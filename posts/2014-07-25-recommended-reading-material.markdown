@@ -66,7 +66,7 @@ Parallel and Concurrent Programming in Haskell [@marlow2013parallel]
 
 # Cateogry Theory
 
-*See also Edward Kmett's [list on Quora][ed].*
+*See also: Edward Kmett's [list on Quora][ed].*
 
 [ed]: http://www.quora.com/Category-Theory/What-is-the-best-textbook-for-Category-theory
 
