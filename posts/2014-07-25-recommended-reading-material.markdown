@@ -54,6 +54,9 @@ Haskell: The Craft of Functional Programming [@thompson1999haskell]
   ~ A well organized introductory text that does a good job of teaching and motivating the functional perspective.
     Might be paced a bit slowly for some, but others will enjoy its thoroughness.
 
+Parallel and Concurrent Programming in Haskell [@marlow2013parallel]
+  ~ Written by one of the implementors of Haskell's parallel runtime. Absolutely wonderful book.
+
 [caveats]: http://stackoverflow.com/a/23733494/2225384
 
 # Cateogry Theory
