@@ -26,7 +26,7 @@ How to Prove It [@velleman2006prove]
 
 Learn You a Haskell [@lipovača2011learn]
   ~ Recommended as a first introduction to Haskell. Focuses on typeclasses.
-    A bit short; should be followed up with a more thorough introductory text like those listed below.
+    A bit short: should be followed up with a more thorough introductory text like those listed below.
 
 Introduction to Functional Programming using Haskell [@Bird98:Introduction]
   ~ One of the best introductory books on programming ever written.
