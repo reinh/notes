@@ -37,7 +37,7 @@ Introduction to Functional Programming using Haskell [@Bird98:Introduction]
   ~ One of the best introductory books on programming ever written.
     As the title suggests, this is not so much a Haskell book as a FP book that happens to *use* Haskell.
     It won't teach you how to use libraries or spend much time on pragmatic issues,
-    but it *will* teach you how to think in a functional way about your programs.
+    but it *will* teach you how to think about programs in a functional way.
 
 Programming in Haskell [@hutton2007programming]
   ~ Focuses on core langauge concepts and avoids advanced topics.
