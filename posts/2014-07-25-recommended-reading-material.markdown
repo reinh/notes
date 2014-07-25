@@ -12,8 +12,8 @@ and/or *Introduction to Functional Programming using Haskell* [@Bird98:Introduct
 
 For **Category Theory**, I suggest Lawvere's *Conceptual Mathematics* [-@lawvere2009conceptual], Awodey's *Category Theory* [-@awodey2010category],
 and Mac Lane's *Categories for the Working Mathematician* [@lane1998categories], in that order.
-Alternatively, the order can be reversed: Awodey can be used as a forcing function to read Lawvere
-and Mac Lane can be used as a forcing function to read Awodey.
+Alternatively, the order can be reversed: Mac Lane can be used as a forcing function to read Awodey;
+and Awodey can be used as a forcing function to read Lawvere.
 
 For **Abstract Algebra**, and as preparation for Category Theory, I recommend Mac&nbsp;Lane's *Algebra* [-@lane1999algebra].
 Lang's *Algebra* [-@lang2002algebra] might be useful as a reference, or if you're *really* interested in abstract algebra.
