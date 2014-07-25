@@ -23,6 +23,10 @@ How to Prove It [@velleman2006prove]
   ~ A wonderful book that introduces a structured method for proving things.
     Required reading for anyone who is interested in writing or understanding proofs.
 
+Introduction to Logic [@tarski2013introduction]
+  ~ A monumental work by one of the greatest logicians of all time.
+    Everyone should read this book.
+
 # Haskell
 
 Learn You a Haskell [@lipovača2011learn]
