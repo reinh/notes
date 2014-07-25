@@ -5,16 +5,16 @@ description: Recommended reading material for learning Haskell, Algebra, Categor
 
 # Suggestions
 
-For Haskell, I suggest *Learn You a Haskell* [@lipovača2011learn]
+For **Haskell**, I suggest *Learn You a Haskell* [@lipovača2011learn]
 followed by *Haskell: The Craft of Functional Programming* [@thompson1999haskell]
 and/or *Introduction fo Functional Programming using Haskell* [@Bird98:Introduction].
 *Real World Haskell* [@o2008real] can be used but it must be read carefully as it is out of date and contains a significant number of errata.
 
-For Category Theory, I suggest Lawvere's *Conceptual Mathematics* [-@lawvere2009conceptual], Awodey's *Category Theory* [-@awodey2010category],
+For **Category Theory**, I suggest Lawvere's *Conceptual Mathematics* [-@lawvere2009conceptual], Awodey's *Category Theory* [-@awodey2010category],
 and Mac Lane's *Categories for the Working Mathematician* [@lane1998categories], in that order.
 Alternatively, Awodey can be used as a forcing function to read Lawvere, and Mac Lane can be used as a forcing function to read Awodey.
 
-For Abstract Algebra, and as preparation for Category Theory, I recommend Mac&nbsp;Lane's *Algebra* [-@lane1999algebra].
+For **Abstract Algebra**, and as preparation for Category Theory, I recommend Mac&nbsp;Lane's *Algebra* [-@lane1999algebra].
 Lang's *Algebra* [-@lang2002algebra] might be useful as a reference, or if you're *really* interested in abstract algebra.
 # General
 
