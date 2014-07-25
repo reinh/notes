@@ -15,7 +15,7 @@ and Mac Lane's *Categories for the Working Mathematician* [@lane1998categories],
 Alternatively, Awodey can be used as a forcing function to read Lawvere, and Mac Lane can be used as a forcing function to read Awodey.
 
 For Abstract Algebra, and as preparation for Category Theory, I recommend Mac&nbsp;Lane's *Algebra* [-@lane1999algebra].
-
+Lang's *Algebra* [-@lang2002algebra] might be useful as a reference, or if you're *really* interested in abstract algebra.
 # General
 
 How to Prove It [@velleman2006prove]
