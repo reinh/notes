@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>My Hakyll Blog - Notes on Edward Kmett on Hask</title>
+        <link rel="stylesheet" type="text/css" href="../css/default.css" />
+        <link rel="stylesheet" type="text/css" href="../css/syntax.css" />
+    </head>
+    <body>
+        <div id="header">
+            <div id="logo">
+                <a href="../">My Hakyll Blog</a>
+            </div>
+            <div id="navigation">
+                <a href="../">Home</a>
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+                <a href="../archive.html">Archive</a>
+            </div>
+        </div>
+
+        <div id="content">
+            <h1>Notes on Edward Kmett on Hask</h1>
+
+            <div class="info">
+    Posted on July 19, 2014
+    
+</div>
+
+<p>Notes on <a href="http://comonad.com">Edward Kmett</a>'s talk <a href="https://www.youtube.com/watch?v=Klwkt9oJwg0">Edward Kmett on Hask</a>.</p>
+<p>First, some preliminaries that introduce GHC extensions we'll need later and hide some Prelude functions that we'll be writing ourselves.</p>
+<pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span> <span class="ot">{-# LANGUAGE PolyKinds #-}</span>
+<span class="ot">&gt;</span> <span class="ot">{-# LANGUAGE RankNTypes #-}</span>
+<span class="ot">&gt;</span> 
+<span class="ot">&gt;</span> <span class="kw">import </span><span class="dt">Prelude</span> <span class="kw">hiding</span> ((.), id)</code></pre>
+<h2 id="categories">Categories</h2>
+<pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span> <span class="kw">class</span> <span class="dt">Category</span> h <span class="kw">where</span>
+<span class="ot">&gt;   id   ::</span> h a a
+<span class="ot">&gt;   (.)  ::</span> h b c <span class="ot">-&gt;</span> h a b <span class="ot">-&gt;</span> h a c</code></pre>
+<aside>
+The terms &quot;mapping&quot;, &quot;arrow&quot;, and &quot;morphism&quot; are used pretty much interchangeably in category theory.
+</aside>
+<p>The Category typeclass represents classes of &quot;morphisms&quot; (abstract functions) equipped with an identity morphism and composition of morphisms. This is the usual notion of a <em>category</em> from <a href="http://en.wikipedia.org/wiki/Category_Theory">Category Theory</a> with a few restrictions. Most importantly, this definition restricts us to categories with morphisms of kind <code>*</code>. The rest of this talk will explore the use of <code>PolyKinds</code> to construct <em>higher kinded</em> categories. The motivation for this is the introduction of a higher order morphism known as a <em>natural transformation</em>, and the definition of a category that makes use of them. In order to get there, however, we'll have to introduce functors first.</p>
+<h2 id="functors">Functors</h2>
+<p>A <a href="http://en.wikipedia.org/wiki/Functor">functor</a> is a type of mapping between categories. Given a functor <span class="math"><em>F</em> : <em>C</em> → <em>D</em></span> and two categories <span class="math"><em>C</em></span> and <span class="math"><em>D</em></span>, <span class="math"><em>F</em></span> maps objects in <span class="math"><em>C</em></span> to objects in <span class="math"><em>D</em></span> and arrows in <span class="math"><em>C</em></span> to arrows in <span class="math"><em>D</em></span>. This mapping must abide by two laws:</p>
+<ol style="list-style-type: decimal">
+<li><p>It must preserve identity arrows:</p>
+<p><span class="math"><em>F</em>(<em>i</em><em>d</em><sub><em>X</em></sub>) = <em>i</em><em>d</em><sub><em>F</em>(<em>X</em>)</sub></span> for every object <span class="math"><em>X</em></span> in <span class="math"><em>C</em></span>.</p>
+<p>In other words, the <span class="math"><em>i</em><em>d</em></span> arrow for the object <span class="math"><em>X</em></span> in <span class="math"><em>C</em></span> must map to the <span class="math"><em>i</em><em>d</em></span> arrow for the object <span class="math"><em>F</em>(<em>X</em>)</span> in <span class="math"><em>D</em></span>.</p></li>
+<li><p>It must preserve composition of arrows:</p>
+<p><span class="math"><em>F</em>(<em>g</em> ∘ <em>f</em> ) = <em>F</em>(<em>g</em>) ∘ <em>F</em>(<em>f</em> )</span> for all arrows <span class="math"><em>f</em> : <em>X</em> → <em>Y</em>  </span> and <span class="math"><em>g</em> : <em>Y</em> → <em>Z</em>.  </span></p>
+<p>In other words, the composition of arrows <span class="math"><em>f</em></span> and <span class="math"><em>g</em></span> in <span class="math"><em>C</em></span> must map to the composition of arrows <span class="math"><em>F</em>(<em>f</em> )</span> and <span class="math"><em>F</em>(<em>g</em>)</span> in <span class="math"><em>D</em></span>.</p></li>
+</ol>
+<p>The Functor class that comes with Haskell is this sort of functor, but again it is somewhat restricted because it doesn't parameterize over a choice of category:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Functor</span> f <span class="kw">where</span>
+<span class="ot">  fmap ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> f a <span class="ot">-&gt;</span> f b</code></pre>
+<aside>
+An <em>endofunctor</em> is a functor that maps from a category to itself.
+</aside>
+<p>This means that it can only operate in the &quot;ambient&quot; Haskell category, where the objects are all Haskell types and the arrows are all functions, often called <em>Hask</em>. This also makes them <em>endofunctors</em>.</p>
+<p>It has a mapping from types to types (this is the instance's type constructor, e.g., <code>Maybe</code>, which must be of kind <code>* -&gt; *</code>) and a mapping from functions to functions (this is the instance's implementation of <code>fmap</code>). It must also abide a pair of &quot;Functor laws&quot; which are precisely the functor laws from category cheory:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- fmap sends identity arrows to identity arrows</span>
+fmap id <span class="fu">=</span> id
+
+<span class="co">-- fmap preserves composition</span>
+fmap f <span class="fu">.</span> fmap g <span class="fu">=</span> fmap (f <span class="fu">.</span> g)</code></pre>
+<p>Now that we have a way to describe categories explicitly, we can describe Hask itself:</p>
+<pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span> <span class="kw">instance</span> <span class="dt">Category</span> (<span class="ot">-&gt;</span>) <span class="kw">where</span>
+<span class="ot">&gt;</span>   id x <span class="fu">=</span> x
+<span class="ot">&gt;</span>   (<span class="fu">.</span>) f g b <span class="fu">=</span> f (g b)</code></pre>
+<p>and we can also describe functors between categories other than Hask! (Unfortunately, we'll have to get to that bit later since Edward has already jumped ahead to <em>natural transformations</em>!)</p>
+<h2 id="natural-transformations">Natural Transformations</h2>
+<p>If functors are morphisms of morphisms, it's reasonable to ask if we can go a step further and get morphisms of morphisms of morphisms, i.e., morphisms of functors. The answer is yes, and they're called [natural transformations][nat].</p>
+<p>Specifically, a natural transformation is a morphism from a Functor to another Functor:</p>
+<pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span> <span class="kw">newtype</span> <span class="dt">Nat</span> f g <span class="fu">=</span> <span class="dt">Nat</span> {<span class="ot"> runNat ::</span> forall a<span class="fu">.</span> f a <span class="ot">-&gt;</span> g a }</code></pre>
+<p><code>Nat</code> sends a Functor <code>f</code> to a Functor <code>g</code>. It doesn't care what type the functors are parameterized over as long as it doesn't change. The <code>RankNTypes</code> extension is needed here to universally quantify (and bind) the <code>a</code> in the inner scope, and thereby &quot;hide&quot; it it from the outer scope.</p>
+<p>Since it's somewhat unusual to operate at this level of abstraction, it might help to provide a few examples of <code>Nat</code> values. First, we'll need some functions that serve as functor mappings:</p>
+<pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span> <span class="co">-- A mapping from [a] to Maybe a</span>
+<span class="ot">&gt;</span> <span class="co">-- NB: This mapping &quot;forgets&quot; the tail of the list.</span>
+<span class="ot">&gt; listToMaybe              ::</span> [a] <span class="ot">-&gt;</span> <span class="dt">Maybe</span> a
+<span class="ot">&gt;</span> listToMaybe []           <span class="fu">=</span> <span class="dt">Nothing</span>
+<span class="ot">&gt;</span> listToMaybe (x<span class="fu">:</span>xs)       <span class="fu">=</span> <span class="dt">Just</span> x</code></pre>
+<pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span> <span class="co">-- A mapping from Maybe a to Either () a</span>
+<span class="ot">&gt;</span> <span class="co">-- NB: Either () a is isomorphic to Maybe a</span>
+<span class="ot">&gt; maybeToEither            ::</span> <span class="dt">Maybe</span> a <span class="ot">-&gt;</span> <span class="dt">Either</span> () a
+<span class="ot">&gt;</span> maybeToEither <span class="dt">Nothing</span>    <span class="fu">=</span> <span class="dt">Left</span> ()
+<span class="ot">&gt;</span> maybeToEither (<span class="dt">Just</span> x)   <span class="fu">=</span> <span class="dt">Right</span> x</code></pre>
+<pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span> <span class="co">-- A mapping from Either a b back to Maybe b</span>
+<span class="ot">&gt;</span> <span class="co">-- NB: This mapping &quot;forgets&quot; the left summand.</span>
+<span class="ot">&gt; eitherToMaybe            ::</span> <span class="dt">Either</span> a b <span class="ot">-&gt;</span> <span class="dt">Maybe</span> b
+<span class="ot">&gt;</span> eitherToMaybe (<span class="dt">Left</span> _)   <span class="fu">=</span> <span class="dt">Nothing</span>
+<span class="ot">&gt;</span> eitherToMaybe (<span class="dt">Right</span> x)  <span class="fu">=</span> <span class="dt">Just</span> x</code></pre>
+<p>Now we can look at their <code>Nat</code>-encoded versions:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">Nat</span><span class="ot"> listToMaybe    ::</span> <span class="dt">Nat</span> [] <span class="dt">Maybe</span>
+<span class="dt">Nat</span><span class="ot"> maybeToEither  ::</span> <span class="dt">Nat</span> <span class="dt">Maybe</span> (<span class="dt">Either</span> ())
+<span class="dt">Nat</span><span class="ot"> eitherToMaybe  ::</span> <span class="dt">Mat</span> (<span class="dt">Either</span> a) <span class="dt">Maybe</span></code></pre>
+<p>(Note that the Functor's type argument is hidden by the forall and <code>Rank2Types</code>.)</p>
+<p>Since natural transformations are morphisms, it's also reasonable to ask if they form a category, and it shouldn't be a surprise that they do. This category is called a <em>functor category</em>.</p>
+<h2 id="functor-categories">Functor Categories</h2>
+<p>Starting with the observation that the functions defined above can be composed,</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">maybeToEither <span class="fu">.</span><span class="ot"> listToMaybe   ::</span> [a] <span class="ot">-&gt;</span> <span class="dt">Either</span> () a
+maybeToEither <span class="fu">.</span><span class="ot"> eitherToMaybe ::</span> <span class="dt">Either</span> a b <span class="ot">-&gt;</span> <span class="dt">Either</span> () b
+eitherToMaybe <span class="fu">.</span><span class="ot"> maybeToEither ::</span> <span class="dt">Maybe</span> a <span class="ot">-&gt;</span> <span class="dt">Maybe</span> a</code></pre>
+<p>we can also explore the composition of <code>Nat</code> values. The first step is to make a <code>Category</code> instance for <code>Nat</code>:</p>
+<pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span> <span class="kw">instance</span> <span class="dt">Category</span> <span class="dt">Nat</span> <span class="kw">where</span>
+<span class="ot">&gt;</span>   id <span class="fu">=</span> <span class="dt">Nat</span> id
+<span class="ot">&gt;</span>   <span class="dt">Nat</span> f <span class="fu">.</span> <span class="dt">Nat</span> g <span class="fu">=</span> <span class="dt">Nat</span> (f <span class="fu">.</span> g)</code></pre>
+<p>If we try this without <code>PolyKinds</code>, we get a kind error:</p>
+<pre><code>    The first argument of ‘Category’ should have kind ‘* -&gt; * -&gt; *’,
+      but ‘Nat’ has kind ‘(* -&gt; *) -&gt; (* -&gt; *) -&gt; *’
+    In the instance declaration for ‘Category Nat’</code></pre>
+<p>We're trying to make a <code>Category</code> instance for <code>Nat</code>. Unfortunately, <code>Nat</code> has kind</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">:</span>k <span class="dt">Nat</span>
+(<span class="fu">*</span> <span class="ot">-&gt;</span> <span class="fu">*</span>) <span class="ot">-&gt;</span> (<span class="fu">*</span> <span class="ot">-&gt;</span> <span class="fu">*</span>) <span class="ot">-&gt;</span> <span class="fu">*</span></code></pre>
+<p>because <code>Nat</code> is a mapping of <code>Functor</code>s, which have kind <code>* -&gt; *</code>, while <code>Category</code> instances must have kind <code>* -&gt; * -&gt; *</code>. In other words, <code>Category</code> instances can only map over types of kind <code>*</code>, not types of kind <code>* -&gt; *</code>.</p>
+<aside>
+<code>PolyKinds</code> was introduced in the paper <a href="http://dreixel.net/research/pdf/ghp.pdf">Giving Haskell a Promotion</a> by Yorgey, Weirich, Vytiniotis, and Jones.
+</aside>
+<p>The solution is to allow <code>Category</code> to map over arbitrarily kinded types. The <a href="https://www.haskell.org/ghc/docs/latest/html/users_guide/kind-polymorphism.html"><code>PolyKinds</code></a> extension lets GHC derive a <em>polymorphic kind</em> for <code>Category</code> so that the kind of <code>Category</code> instances becomes <code>k -&gt; k -&gt; *</code> where <code>k</code> represents any kind.</p>
+<p>Now that we have a polymorphically kinded <code>Category</code>, we can construct our instance for <code>Nat</code>. Here it is again for reference:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">Category</span> <span class="dt">Nat</span> <span class="kw">where</span>
+  id <span class="fu">=</span> <span class="dt">Nat</span> id
+  <span class="dt">Nat</span> f <span class="fu">.</span> <span class="dt">Nat</span> g <span class="fu">=</span> <span class="dt">Nat</span> (f <span class="fu">.</span> g)</code></pre>
+<p>The identity morphism for natural transformations is the always useful <code>id</code>. Composition for natural transformations is given by composition of the functions we use to represent them, modulo some newtype wrapping and unwrapping. Since newtypes are isomorphic to their underlying type, <code>Nat</code> wraps over <code>(-&gt;)</code>, and functions already form a category, we get the category laws for <code>Nat</code> for free. (Or at least we only had to pay for them once.)</p>
+<div class="references">
+
+</div>
+
+        </div>
+        <div id="footer">
+            Site proudly generated by
+            <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+        </div>
+    </body>
+</html>
