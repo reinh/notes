@@ -111,7 +111,7 @@ Algebra [@lang2002algebra]
   ~ ![Algebra Cover](/images/lang.jpg)
     Weighing in at over 900 pages, Lang is somewhere between a graduate-level textbook
     and some sort of beastiary of algebraic structures.
-    Lang introduced a novel pedagogy for algebra that borowed new ways of thinking
+    Lang introduced a novel pedagogy for algebra that borrowed new ways of thinking
     from category theory and homological algebra,
     which has influenced subsequent books.
 
