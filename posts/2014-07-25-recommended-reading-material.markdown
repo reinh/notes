@@ -79,7 +79,7 @@ Conceptual Mathematics [@lawvere2009conceptual]
     This is a great introduction to Category Theory for folks without a mathematical background
     and will prepare you to read some of the more advanced texts that follow.
 
-Categories for the Working Mathematician [@lang2002algebra]
+Categories for the Working Mathematician [@lane1998categories]
   ~ ![Categories for the Working Mathematician Cover](/images/maclane-categories.jpg)
     Written for "working mathematicians", this dense book is a considerable challenge even for graduate students.
     That said, it's also the most comprehensive and thorough Category Theory text, written by one of the founders of the discipline.
