@@ -86,7 +86,7 @@ Category Theory [@awodey2010category]
 
 Abstract and Concrete Categories: The Joy of Cats [@adámek2009abstract]
   ~ Sits somewhere between @lawvere2009conceptual and @awodey2010category in difficulty.
-    A decent introductory text, but mostly redundant if you're alreading those two.
+    A decent introductory text, but mostly redundant if you're already reading those two.
 
 # Abstract Algebra
 
