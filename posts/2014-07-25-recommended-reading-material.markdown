@@ -5,9 +5,8 @@ description: Recommended reading material for learning Haskell, Algebra, Categor
 
 # Suggestions
 
-For **Haskell**, I suggest *Learn You a Haskell* [@lipovača2011learn]
-followed by *Haskell: The Craft of Functional Programming* [@thompson1999haskell]
-and/or *Introduction to Functional Programming using Haskell* [@Bird98:Introduction].
+For **Haskell**, I suggest *Haskell: The Craft of Functional Programming* [@thompson1999haskell]
+and *Introduction to Functional Programming using Haskell* [@Bird98:Introduction].
 *Real World Haskell* [@o2008real] can be used but it must be read carefully as it is out of date and contains a significant number of errata.
 
 For **Category Theory**, I suggest Lawvere's *Conceptual Mathematics* [-@lawvere2009conceptual], Awodey's *Category Theory* [-@awodey2010category],
@@ -29,10 +28,6 @@ Introduction to Logic [@tarski2013introduction]
     Everyone should read this book.
 
 # Haskell
-
-Learn You a Haskell [@lipovača2011learn]
-  ~ Recommended as a first introduction to Haskell. Focuses on typeclasses.
-    A bit short and should be followed up with a more thorough introductory text like those listed below.
 
 Introduction to Functional Programming using Haskell [@Bird98:Introduction]
   ~ One of the best introductory books on programming ever written.
