@@ -21,6 +21,7 @@ Lang's *Algebra* [-@lang2002algebra] might be useful as a reference, or if you'r
 
 How to Prove It [@velleman2006prove]
   ~ ![How to Prove It Cover](/images/prove-it.jpg)
+
     A wonderful book that introduces a structured method for proving things.
     Required reading for anyone who is interested in writing or understanding proofs.
 
