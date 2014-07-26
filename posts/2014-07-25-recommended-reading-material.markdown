@@ -107,6 +107,13 @@ Algebra [@lane1999algebra]
     *Algebra* will introduce you to Mac Lane's idiosyncratic style
     and is an excellent preparation for Category Theory.
 
+A Book of Abstract Algebra [@pinter2010book]
+  ~ ![](/images/pinter.jpg)
+    "Accessible but rigorous", Pinter features plenty of exercises and uses an
+    intuitive, informal, discussion-based approach rather than the more conventional
+    definition-theorem-proof-corollary-example format.
+    Recommended by [Ollie Charles][ollie].
+
 Algebra [@lang2002algebra]
   ~ ![Algebra Cover](/images/lang.jpg)
     Weighing in at over 900 pages, Lang is somewhere between a graduate-level textbook
@@ -116,5 +123,6 @@ Algebra [@lang2002algebra]
     which has influenced subsequent books.
 
 [words]: http://www.amazon.com/review/R2MHDPXKDJRWA2/ref=cm_cr_dp_cmt?ie=UTF8&ASIN=0821816462&nodeID=283155&store=books
+[ollie]: http://ocharles.org.uk
 
 # References
