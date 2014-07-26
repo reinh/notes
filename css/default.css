@@ -31,7 +31,7 @@ pre code {
 
 div#header {
     border-bottom: 2px solid black;
-    margin-bottom: 30px;
+    margin-bottom: 0px;
     padding: 12px 0px 12px 0px;
 }
 
@@ -79,8 +79,68 @@ div.info {
     font-style: italic;
 }
 
-h1, h2, h3, h4, h5 { clear: both; }
+h1, h2, h3, h4, h5 { clear: both; float: left; width: 100%;}
 
-dt { clear: both; font-weight: bold; }
+pre { clear: both; }
+
+dl { clear: both; }
+dt { clear: both; font-weight: bold; margin-top:  }
 dd { margin-left: 0; }
-dd img { float: left; margin-right: 10px; margin-bottom: 10px; }
+dd img { float: left; margin-right: 10px; margin-bottom: 5px; }
+dd p { float: left; }
+
+.info { margin-top: -22px; margin-bottom: 22px; float: left; width: 100%; }
+
+/* BASELINE GRID */
+/* http://www.gridlover.net/app/ */
+/* font size 16; line height 1.4; scale factor 1.618 */
+
+body {
+  font-size: 16px;
+  line-height: 22px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+h1 {
+  font-size: 42px;
+  line-height: 44px;
+  margin-top: 44px;
+  margin-bottom: 22px;
+}
+h1 {
+  font-size: 26px;
+  line-height: 44px;
+  margin-top: 22px;
+  margin-bottom: 22px;
+}
+h3 {
+  font-size: 16px;
+  line-height: 22px;
+  margin-top: 22px;
+  margin-bottom: 22px;
+}
+p, ul, ol, pre, table, blockquote {
+  margin-top: 22px;
+  margin-bottom: 22px;
+}
+
+/* Sanitation */
+hr {
+  border: 1px solid;
+  margin: -1px 0;
+}
+ul ul, ol ol, ul ol, ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+b, strong, em, small, code {
+  line-height: 1;
+}
+sup, sub {
+  vertical-align: baseline;
+  position: relative;
+  top: -0.4em;
+}
+sub {
+  top: 0.4em;
+}
