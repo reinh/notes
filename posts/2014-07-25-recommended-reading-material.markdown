@@ -67,7 +67,7 @@ Parallel and Concurrent Programming in Haskell [@marlow2013parallel]
 
 [caveats]: http://stackoverflow.com/a/23733494/2225384
 
-# Cateogry Theory
+# Category Theory
 
 *See also: Edward Kmett's [list on Quora][ed].*
 
