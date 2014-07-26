@@ -109,7 +109,7 @@ Algebra [@lane1999algebra]
 
 Algebra [@lang2002algebra]
   ~ ![Algebra Cover](/images/lang.jpg)
-    Weighing in at over 900 pages, Lang is somewhere between an graduate-level textbook
+    Weighing in at over 900 pages, Lang is somewhere between a graduate-level textbook
     and some sort of beastiary of algebraic structures.
     Lang introduced a novel pedagogy for algebra that borowed new ways of thinking
     from category theory and homological algebra,
