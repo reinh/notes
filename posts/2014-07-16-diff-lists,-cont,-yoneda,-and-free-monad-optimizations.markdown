@@ -43,7 +43,9 @@ main = do
   print $ k sqrt
 ```
 
-```output
+prints:
+
+```
 4
 "3"
 1.7320508075688772
@@ -55,8 +57,7 @@ the list concatenation problem.
 The problem is this: constructing a list by repeatedly concatenating onto the end has $O(2^n)$ performance.
 This is because each new concatenation must traverse the entire first list before it can add the second list.
 
-[^hughes]: Hughes, R. J. M. M. "A novel representation of lists and its application to the function “reverse”."
-           Information processing letters 22.3 (1986): 141-144.
+[^hughes]: Hughes, R. J. M. M. *A novel representation of lists and its application to the function "reverse"* Information processing letters 22.3 (1986): 141-144.
 
 The definition of `(++)` is
 

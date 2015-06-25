@@ -84,7 +84,7 @@ h1, h2, h3, h4, h5 { clear: both; }
 pre { clear: both; }
 
 dl { clear: both; }
-dt { clear: both; font-weight: bold; margin-top:  }
+dt { clear: both; font-weight: bold; margin-bottom: 0 }
 dd { margin-left: 0; }
 dd img { float: left; margin-right: 10px; margin-bottom: 5px; }
 dd p { float: left; }

@@ -1,118 +1,193 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Rein's Notes - Recommended Reading Material</title>
-        <script type="text/javascript" src="//use.typekit.net/nmd2mgp.js"></script>
-        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-        <link rel="stylesheet" type="text/css" href="../css/default.css" />
-        <link rel="stylesheet" type="text/css" href="../css/syntax.css" />
-    </head>
-    <body>
-        <div id="header">
-            <div id="logo">
-                <a href="../">Rein's Notes</a>
-            </div>
-            <div id="navigation">
-                <a href="../">Home</a>
-                <a href="../archive.html">Archive</a>
-            </div>
-        </div>
+<!doctype html>
+<html lang>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <div id="content">
-            <h1>Recommended Reading Material</h1>
+    <title>Rein's Notes - Recommended Reading Material</title>
 
-            <div class="info">
+    <script src="//use.typekit.net/nmd2mgp.js"></script>
+    <script>try{Typekit.load();}catch(e){}</script>
+
+    <link rel="stylesheet" type="text/css" href="../css/katex.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/site.css">
+    <link rel="stylesheet" type="text/css" href="../css/prism.css">
+  </head>
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <header>
+      <h1><a href="../">Rein's Notes</a></h1>
+      <nav>
+        <ul>
+          <li><a href="../archive.html">Archive</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section>
+      <article>
+        <header>
+  <h1>Recommended Reading Material</h1>
+  <p>
     Posted on July 25, 2014
     
-</div>
+  </p>
+</header>
 
-<h2 id="suggestions">Suggestions</h2>
-<p>For <strong>Haskell</strong>, I suggest <em>Haskell: The Craft of Functional Programming</em> <span class="citation">[Thompson 1999]</span> and <em>Introduction to Functional Programming using Haskell</em> <span class="citation">[Bird 1998]</span>. <em>Real World Haskell</em> <span class="citation">[O’Sullivan et al. 2008]</span> can be used but it must be read carefully as it is out of date and contains a significant number of errata.</p>
-<p>For <strong>Category Theory</strong>, I suggest Lawvere's <em>Conceptual Mathematics</em> <span class="citation">[2009]</span>, Awodey's <em>Category Theory</em> <span class="citation">[2010]</span>, and Mac Lane's <em>Categories for the Working Mathematician</em> <span class="citation">[1998]</span>, in that order. Alternatively, the order can be reversed: Mac Lane can be used as a forcing function to read Awodey and Awodey can be used as a forcing function to read Lawvere.</p>
-<p>For <strong>Abstract Algebra</strong>, and as preparation for Category Theory, I recommend Mac Lane's <em>Algebra</em> <span class="citation">[1999]</span>. Lang's <em>Algebra</em> <span class="citation">[2002]</span> might be useful as a reference, or if you're <em>really</em> interested in abstract algebra.</p>
-<h2 id="general">General</h2>
+<div class="body column--left">
+  <style>
+dl, dt, dd {
+  float: left;
+}
+
+dd img {
+  position: relative;
+  float: left;
+  margin-right: 0.9em;
+  margin-bottom: 0.5em;
+  top: 0.5em;
+  -moz-box-shadow:    0px 0px 1px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 0px 0px 1px rgba(0,0,0,0.5);
+  box-shadow:         0px 0px 1px rgba(0,0,0,0.5);
+}
+</style>
+
+<h1 id="suggestions">Suggestions</h1>
+
+<p>For <strong>Haskell</strong>, I suggest <em>Haskell: The Craft of Functional Programming</em> <span class="cite" data-citation-ids="thompson1999haskell">[Thompson 1999]</span> and <em>Introduction to Functional Programming using Haskell</em> <span class="cite" data-citation-ids="Bird98:Introduction">[Bird 1998]</span>. <em>Real World Haskell</em> <span class="cite" data-citation-ids="o2008real">[O’Sullivan et al. 2008]</span> can be used but it must be read carefully as it is out of date and contains a significant number of errata.</p>
+
+<p>For <strong>Category Theory</strong>, I suggest Lawvere’s <em>Conceptual Mathematics</em> <span class="cite" data-citation-ids="lawvere2009conceptual">[2009]</span>, Awodey’s <em>Category Theory</em> <span class="cite" data-citation-ids="awodey2010category">[2010]</span>, and Mac Lane’s <em>Categories for the Working Mathematician</em> <span class="cite" data-citation-ids="lane1998categories">[1998]</span>, in that order. Alternatively, the order can be reversed: Mac Lane can be used as a forcing function to read Awodey and Awodey can be used as a forcing function to read Lawvere.</p>
+
+<p>For <strong>Abstract Algebra</strong>, and as preparation for Category Theory, I recommend Mac Lane’s <em>Algebra</em> <span class="cite" data-citation-ids="lane1999algebra">[1999]</span>. Lang’s <em>Algebra</em> <span class="cite" data-citation-ids="lang2002algebra">[2002]</span> might be useful as a reference, or if you’re <em>really</em> interested in abstract algebra.</p>
+
+<h1 id="general">General</h1>
+
 <dl>
-<dt>How to Prove It <span class="citation">[Velleman 2006]</span></dt>
-<dd><p><img src="../images/prove-it.jpg" alt="How to Prove It Cover" /> A wonderful book that introduces a structured method for proving things. Required reading for anyone who is interested in writing or understanding proofs.</p>
-</dd>
-<dt>Introduction to Logic <span class="citation">[Tarski 2013]</span></dt>
-<dd><p><img src="../images/logic.jpg" alt="Introduction to Logic Cover" /> A monumental work by one of the greatest logicians of all time. Everyone should read this book.</p>
-</dd>
+<dt>How to Prove It <span class="cite" data-citation-ids="velleman2006prove">[Velleman 2006]</span></dt>
+<dd><img src="../images/prove-it.jpg" title /> A wonderful book that introduces a structured method for proving things. Required reading for anyone who is interested in writing or understanding proofs.</dd>
+<dt>Introduction to Logic <span class="cite" data-citation-ids="tarski2013introduction">[Tarski 2013]</span></dt>
+<dd><img src="../images/logic.png" title /> A monumental work by one of the greatest logicians of all time. Everyone should read this book.</dd>
 </dl>
-<h2 id="haskell">Haskell</h2>
+
+<h1 id="haskell">Haskell</h1>
+
 <dl>
-<dt>Introduction to Functional Programming using Haskell <span class="citation">[Bird 1998]</span></dt>
-<dd><p><img src="../images/bird-intro-fp.jpg" alt="Introduction to Functional Programming using Haskell Cover" /> One of the best introductory books on programming ever written. As the title suggests, this is not so much a Haskell book as a FP book that happens to <em>use</em> Haskell. It won't teach you how to use libraries or spend much time on pragmatic issues, but it <em>will</em> teach you how to think about programs in a functional way.</p>
-</dd>
-<dt>Programming in Haskell <span class="citation">[Hutton 2007]</span></dt>
-<dd><p><img src="../images/programming-in-haskell.jpg" alt="Programming in Haskell Cover" /> Focuses on core langauge concepts and avoids advanced topics. It's somewhat lightweight at only 171 pages, and its organization is a bit strange, but it is an excellent introduction to the Haskell language.</p>
-</dd>
-<dt>Real World Haskell <span class="citation">[O’Sullivan et al. 2008]</span></dt>
-<dd><p><img src="../images/real-world-haskell.jpg" alt="Real World Haskell Cover" /> This book presents a pragmatic introduction to writing Haskell with a focus on performance. Unfortunately, it contains a number of errata and has become somewhat obsolete. Use the online version and read the comments as many of them correct errors or explain other issues. Also see this <a href="http://stackoverflow.com/a/23733494/2225384">summary of issues</a>.</p>
-</dd>
-<dt>The Haskell Road to Logic, Maths and Programming <span class="citation">[Doets and Eijck 2004]</span></dt>
-<dd><p><img src="../images/haskell-road.jpg" alt="The Haskell Road to Logic Cover" /> This isn't so much a Haskell book as a math book that uses Haskell for its examples. That said, it's a wonderful introduction to the sort of mathematics that you can express in Haskell (which is quite a lot).</p>
-</dd>
-<dt>Haskell: The Craft of Functional Programming <span class="citation">[Thompson 1999]</span></dt>
-<dd><p><img src="../images/haskell-thompson.jpg" alt="Haskell: The Craft of Functional Programming Cover" /> A well organized introductory text that does a good job of teaching and motivating the functional perspective. Might be paced a bit slowly for some, but others will enjoy its thoroughness.</p>
-</dd>
-<dt>Parallel and Concurrent Programming in Haskell <span class="citation">[Marlow 2013]</span></dt>
-<dd><p><img src="../images/marlow-book.jpg" alt="Parallel and Concurrent Programming in Haskell Cover" /> Written by one of the implementors of Haskell's parallel runtime. Absolutely wonderful book.</p>
-</dd>
+<dt>Thinking Functionally with Haskell <span class="cite" data-citation-ids="bird2014thinking">[Bird 2014]</span></dt>
+<dd><img src="../images/thinking-functionally.jpeg" title /> As a modern rewrite of <span class="cite" data-citation-ids="Bird98:Introduction">[Bird 1998]</span>, this is my new favorite functional programming book. Explores the semantics and evaluation models of Haskell in depth and ends with one of the most interesting projects I’ve ever seen in a programming book.</dd>
+<dt>Introduction to Functional Programming using Haskell <span class="cite" data-citation-ids="Bird98:Introduction">[Bird 1998]</span></dt>
+<dd><img src="../images/bird-intro-fp.jpg" title /> One of the best introductory books on programming ever written. As the title suggests, this is not so much a Haskell book as a FP book that happens to <em>use</em> Haskell. It won’t teach you how to use libraries or spend much time on pragmatic issues, but it <em>will</em> teach you how to think about programs in a functional way.</dd>
+<dt>Programming in Haskell <span class="cite" data-citation-ids="hutton2007programming">[Hutton 2007]</span></dt>
+<dd><img src="../images/programming-in-haskell.jpg" title /> Focuses on core langauge concepts and avoids advanced topics. It’s somewhat lightweight at only 171 pages, and its organization is a bit strange, but it is an excellent introduction to the Haskell language.</dd>
+<dt>Real World Haskell <span class="cite" data-citation-ids="o2008real">[O’Sullivan et al. 2008]</span></dt>
+<dd><img src="../images/real-world-haskell.png" title /> This book presents a pragmatic introduction to writing Haskell with a focus on performance. Unfortunately, it contains a number of errata and has become somewhat obsolete. Use the online version and read the comments as many of them correct errors or explain other issues. Also see this <a href="http://stackoverflow.com/a/23733494/2225384" title>summary of issues</a>.</dd>
+<dt>The Haskell Road to Logic, Maths and Programming <span class="cite" data-citation-ids="doets2004haskell">[Doets and Eijck 2004]</span></dt>
+<dd><img src="../images/haskell-road.jpg" title /> This isn’t so much a Haskell book as a math book that uses Haskell for its examples. That said, it’s a wonderful introduction to the sort of mathematics that you can express in Haskell (which is quite a lot).</dd>
+<dt>Haskell: The Craft of Functional Programming <span class="cite" data-citation-ids="thompson1999haskell">[Thompson 1999]</span></dt>
+<dd><img src="../images/haskell-thompson.jpg" title /> A well organized introductory text that does a good job of teaching and motivating the functional perspective. Might be paced a bit slowly for some, but others will enjoy its thoroughness.</dd>
+<dt>Parallel and Concurrent Programming in Haskell <span class="cite" data-citation-ids="marlow2013parallel">[Marlow 2013]</span></dt>
+<dd><img src="../images/marlow-book.jpg" title /> Written by one of the implementors of Haskell’s parallel runtime. Absolutely wonderful book.</dd>
 </dl>
-<h2 id="category-theory">Category Theory</h2>
-<p><em>See also: Edward Kmett's <a href="http://www.quora.com/Category-Theory/What-is-the-best-textbook-for-Category-theory">list on Quora</a>.</em></p>
+
+<h1 id="category-theory">Category Theory</h1>
+
+<p><em>See also: Edward Kmett’s <a href="http://www.quora.com/Category-Theory/What-is-the-best-textbook-for-Category-theory" title>list on Quora</a>.</em></p>
+
 <dl>
-<dt>Conceptual Mathematics <span class="citation">[Lawvere and Schanuel 2009]</span></dt>
-<dd><p><img src="../images/lawvere.jpg" alt="Conceptual Mathematics Cover" /> A Category Theory text with few prerequisites, suitable for a &quot;motivated high-schooler&quot;. This is a great introduction to Category Theory for folks without a mathematical background and will prepare you to read some of the more advanced texts that follow.</p>
-</dd>
-<dt>Categories for the Working Mathematician <span class="citation">[Mac Lane 1998]</span></dt>
-<dd><p><img src="../images/maclane-categories.jpg" alt="Categories for the Working Mathematician Cover" /> Written for &quot;working mathematicians&quot;, this dense book is a considerable challenge even for graduate students. That said, it's also the most comprehensive and thorough Category Theory text, written by one of the founders of the discipline.</p>
-</dd>
-<dt>Category Theory <span class="citation">[Awodey 2010]</span></dt>
-<dd><p><img src="../images/awodey.jpg" alt="Category Theory Cover" /> The standard modern text on Category Theory, and the best all around introduction. Sits somewhere between <span class="citation">Lawvere and Schanuel [2009]</span> and <span class="citation">Mac Lane [1998]</span> in difficulty. Highly recommended.</p>
-</dd>
-<dt>Abstract and Concrete Categories: The Joy of Cats <span class="citation">[Ad<span>á</span>mek et al. 2009]</span></dt>
-<dd><p><img src="../images/joy-of-cats.jpg" alt="Joy of Cats Cover" /> Sits somewhere between <span class="citation">Lawvere and Schanuel [2009]</span> and <span class="citation">Awodey [2010]</span> in difficulty. A good introductory text, but mostly redundant if you're already reading those two. It might be useful as a bridge between Lawvere and Awodey for some people.</p>
-</dd>
+<dt>Conceptual Mathematics <span class="cite" data-citation-ids="lawvere2009conceptual">[Lawvere and Schanuel 2009]</span></dt>
+<dd><img src="../images/lawvere.jpg" title /> A Category Theory text with few prerequisites, suitable for a &ldquo;motivated high-schooler&rdquo;. This is a great introduction to Category Theory for folks without a mathematical background and will prepare you to read some of the more advanced texts that follow.</dd>
+<dt>Categories for the Working Mathematician <span class="cite" data-citation-ids="lane1998categories">[Mac Lane 1998]</span></dt>
+<dd><img src="../images/maclane-categories.jpg" title /> Written for &ldquo;working mathematicians&rdquo;, this dense book is a considerable challenge even for graduate students. That said, it’s also the most comprehensive and thorough Category Theory text, written by one of the founders of the discipline.</dd>
+<dt>Category Theory <span class="cite" data-citation-ids="awodey2010category">[Awodey 2010]</span></dt>
+<dd><img src="../images/awodey.jpg" title /> The standard modern text on Category Theory, and the best all around introduction. Sits somewhere between <span class="cite" data-citation-ids="lawvere2009conceptual">Lawvere and Schanuel [2009]</span> and <span class="cite" data-citation-ids="lane1998categories">Mac Lane [1998]</span> in difficulty. Highly recommended.</dd>
+<dt>Abstract and Concrete Categories: The Joy of Cats <span class="cite" data-citation-ids="adámek2009abstract">[Adámek et al. 2009]</span></dt>
+<dd><img src="../images/joy-of-cats.jpg" title /> Sits somewhere between <span class="cite" data-citation-ids="lawvere2009conceptual">Lawvere and Schanuel [2009]</span> and <span class="cite" data-citation-ids="awodey2010category">Awodey [2010]</span> in difficulty. A good introductory text, but mostly redundant if you’re already reading those two. It might be useful as a bridge between Lawvere and Awodey for some people.</dd>
 </dl>
-<h2 id="abstract-algebra">Abstract Algebra</h2>
+
+<h1 id="abstract-algebra">Abstract Algebra</h1>
+
 <dl>
-<dt>Algebra <span class="citation">[Mac Lane and Birkhoff 1999]</span></dt>
-<dd><p><img src="../images/maclane-algebra.jpg" alt="Algebra Cover" /> In the <a href="http://www.amazon.com/review/R2MHDPXKDJRWA2/ref=cm_cr_dp_cmt?ie=UTF8&amp;ASIN=0821816462&amp;nodeID=283155&amp;store=books">words</a> of one of Mac Lane's students, &quot;I know of no book on pure mathematics more worth reading than this one&quot;. Introduces algebra methodically and thoroughly from first principles. A much easier book than <em>Categories for the Working Mathematician</em> <span class="citation">[Mac Lane 1998]</span>, <em>Algebra</em> will introduce you to Mac Lane's idiosyncratic style and is an excellent preparation for Category Theory.</p>
-</dd>
-<dt>A Book of Abstract Algebra <span class="citation">[Pinter 2010]</span></dt>
-<dd><p><img src="../images/pinter.jpg" /> &quot;Accessible but rigorous&quot;, Pinter features plenty of exercises and uses an intuitive, informal, discussion-based approach rather than the more conventional definition-theorem-proof-corollary-example format. Recommended by <a href="http://ocharles.org.uk">Ollie Charles</a>.</p>
-</dd>
-<dt>Algebra <span class="citation">[Lang 2002]</span></dt>
-<dd><p><img src="../images/lang.jpg" alt="Algebra Cover" /> Weighing in at over 900 pages, Lang is somewhere between a graduate-level textbook and some sort of beastiary of algebraic structures. Lang introduced a novel pedagogy for algebra that borrowed new ways of thinking from category theory and homological algebra, which has influenced subsequent books.</p>
-</dd>
+<dt>Algebra <span class="cite" data-citation-ids="lane1999algebra">[Mac Lane and Birkhoff 1999]</span></dt>
+<dd><img src="../images/maclane-algebra.jpg" title /> In the <a href="http://www.amazon.com/review/R2MHDPXKDJRWA2/ref=cm_cr_dp_cmt?ie=UTF8&amp;ASIN=0821816462&amp;nodeID=283155&amp;store=books" title>words</a> of one of Mac Lane’s students, &ldquo;I know of no book on pure mathematics more worth reading than this one&rdquo;. Introduces algebra methodically and thoroughly from first principles. A much easier book than <em>Categories for the Working Mathematician</em> <span class="cite" data-citation-ids="lane1998categories">[Mac Lane 1998]</span>, <em>Algebra</em> will introduce you to Mac Lane’s idiosyncratic style and is an excellent preparation for Category Theory.</dd>
+<dt>A Book of Abstract Algebra <span class="cite" data-citation-ids="pinter2012book">[Pinter 2012]</span></dt>
+<dd><img src="../images/pinter.jpg" title /> &ldquo;Accessible but rigorous&rdquo;, Pinter features plenty of exercises and uses an intuitive, informal, discussion-based approach rather than the more conventional definition-theorem-proof-corollary-example format. Recommended by <a href="http://ocharles.org.uk" title>Ollie Charles</a>.</dd>
+<dt>Algebra <span class="cite" data-citation-ids="lang2002algebra">[Lang 2002]</span></dt>
+<dd><img src="../images/lang.jpg" title /> Weighing in at over 900 pages, Lang is somewhere between a graduate-level textbook and some sort of beastiary of algebraic structures. Lang introduced a novel pedagogy for algebra that borrowed new ways of thinking from category theory and homological algebra, which has influenced subsequent books.</dd>
 </dl>
+
 <div class="references">
-<h2>References</h2>
-<p><span style="font-variant: small-caps;">Ad<span>á</span>mek, J., Herrlich, H., and Strecker, G.</span> 2009. <em>Abstract and concrete categories: The joy of cats</em>. Dover Publications, Incorporated. <a href="http://books.google.com/books?id=rqT4PgAACAAJ">http://books.google.com/books?id=rqT4PgAACAAJ</a>.</p>
-<p><span style="font-variant: small-caps;">Awodey, S.</span> 2010. <em>Category theory</em>. OUP Oxford. <a href="http://books.google.com/books?id=xC1bpwAACAAJ">http://books.google.com/books?id=xC1bpwAACAAJ</a>.</p>
-<p><span style="font-variant: small-caps;">Bird, R.S.</span> 1998. <em>Introduction to functional programming using Haskell</em>. Prentice-Hall. <a href="http://www.cs.ox.ac.uk/publications/books/functional/">http://www.cs.ox.ac.uk/publications/books/functional/</a>.</p>
-<p><span style="font-variant: small-caps;">Doets, K. and Eijck, J. van</span>. 2004. <em>The haskell road to logic, maths and programming</em>. King’s College Publications. <a href="http://books.google.com/books?id=5Xk-AQAAIAAJ">http://books.google.com/books?id=5Xk-AQAAIAAJ</a>.</p>
-<p><span style="font-variant: small-caps;">Hutton, G.</span> 2007. <em>Programming in haskell</em>. Cambridge University Press. <a href="http://books.google.com/books?id=olp7lAtpRX0C">http://books.google.com/books?id=olp7lAtpRX0C</a>.</p>
-<p><span style="font-variant: small-caps;">Lang, S.</span> 2002. <em>Algebra</em>. Springer New York. <a href="http://books.google.com/books?id=Fge-BwqhqIYC">http://books.google.com/books?id=Fge-BwqhqIYC</a>.</p>
-<p><span style="font-variant: small-caps;">Lawvere, F. and Schanuel, S.</span> 2009. <em>Conceptual mathematics: A first introduction to categories</em>. Cambridge University Press. <a href="http://books.google.com/books?id=h0zOGPlFmcQC">http://books.google.com/books?id=h0zOGPlFmcQC</a>.</p>
-<p><span style="font-variant: small-caps;">Mac Lane, S.</span> 1998. <em>Categories for the working mathematician</em>. U.S. Government Printing Office. <a href="http://books.google.com/books?id=MXboNPdTv7QC">http://books.google.com/books?id=MXboNPdTv7QC</a>.</p>
-<p><span style="font-variant: small-caps;">Mac Lane, S. and Birkhoff, G.</span> 1999. <em>Algebra</em>. Chelsea Publishing Company. <a href="http://books.google.com/books?id=L6FENd8GHIUC">http://books.google.com/books?id=L6FENd8GHIUC</a>.</p>
-<p><span style="font-variant: small-caps;">Marlow, S.</span> 2013. <em>Parallel and concurrent programming in haskell: Techniques for multicore and multithreaded programming</em>. O’Reilly Media. <a href="http://books.google.com/books?id=wSkRAAAAQBAJ">http://books.google.com/books?id=wSkRAAAAQBAJ</a>.</p>
-<p><span style="font-variant: small-caps;">O’Sullivan, B., Goerzen, J., and Stewart, D.</span> 2008. <em>Real world haskell: Code you can believe in</em>. O’Reilly Media. <a href="http://book.realworldhaskell.org">http://book.realworldhaskell.org</a>.</p>
-<p><span style="font-variant: small-caps;">Pinter, C.</span> 2010. <em>A book of abstract algebra: Second edition</em>. Dover Publications. <a href="http://books.google.com/books?id=ZAo\_AwAAQBAJ">http://books.google.com/books?id=ZAo\_AwAAQBAJ</a>.</p>
-<p><span style="font-variant: small-caps;">Tarski, A.</span> 2013. <em>Introduction to logic: and to the methodology of deductive sciences</em>. Dover Publications. <a href="http://books.google.com/books?id=vtzCAgAAQBAJ">http://books.google.com/books?id=vtzCAgAAQBAJ</a>.</p>
-<p><span style="font-variant: small-caps;">Thompson, S.</span> 1999. <em>Haskell: The craft of functional programming</em>. Addison Wesley. <a href="http://books.google.com/books?id=a39QAAAAMAAJ">http://books.google.com/books?id=a39QAAAAMAAJ</a>.</p>
-<p><span style="font-variant: small-caps;">Velleman, D.</span> 2006. <em>How to prove it: A structured approach</em>. Cambridge University Press. <a href="http://books.google.com/books?id=sXt-ROLLNHcC">http://books.google.com/books?id=sXt-ROLLNHcC</a>.</p>
+<h1 id="references" class="unnumbered">References</h1>
+
+<div id="ref-adámek2009abstract">
+<p><span style="font-variant: small-caps;">Adámek, J., Herrlich, H., and Strecker, G.</span> 2009. <em>Abstract and concrete categories: The joy of cats</em>. Dover Publications, Incorporated. <a href="http://books.google.com/books?id=rqT4PgAACAAJ" title>http://books.google.com/books?id=rqT4PgAACAAJ</a>.</p></div>
+
+<div id="ref-awodey2010category">
+<p><span style="font-variant: small-caps;">Awodey, S.</span> 2010. <em>Category theory</em>. OUP Oxford. <a href="http://books.google.com/books?id=xC1bpwAACAAJ" title>http://books.google.com/books?id=xC1bpwAACAAJ</a>.</p></div>
+
+<div id="ref-Bird98:Introduction">
+<p><span style="font-variant: small-caps;">Bird, R.S.</span> 1998. <em>Introduction to functional programming using Haskell</em>. Prentice-Hall. <a href="http://www.cs.ox.ac.uk/publications/books/functional/" title>http://www.cs.ox.ac.uk/publications/books/functional/</a>.</p></div>
+
+<div id="ref-bird2014thinking">
+<p><span style="font-variant: small-caps;">Bird, R.S.</span> 2014. <em>Thinking functionally with haskell</em>. Cambridge University Press. <a href="https://books.google.com/books?id=B4RxBAAAQBAJ" title>https://books.google.com/books?id=B4RxBAAAQBAJ</a>.</p></div>
+
+<div id="ref-doets2004haskell">
+<p><span style="font-variant: small-caps;">Doets, K. and Eijck, J. van</span>. 2004. <em>The haskell road to logic, maths and programming</em>. King’s College Publications. <a href="http://books.google.com/books?id=5Xk-AQAAIAAJ" title>http://books.google.com/books?id=5Xk-AQAAIAAJ</a>.</p></div>
+
+<div id="ref-hutton2007programming">
+<p><span style="font-variant: small-caps;">Hutton, G.</span> 2007. <em>Programming in haskell</em>. Cambridge University Press. <a href="http://books.google.com/books?id=olp7lAtpRX0C" title>http://books.google.com/books?id=olp7lAtpRX0C</a>.</p></div>
+
+<div id="ref-lang2002algebra">
+<p><span style="font-variant: small-caps;">Lang, S.</span> 2002. <em>Algebra</em>. Springer New York. <a href="http://books.google.com/books?id=Fge-BwqhqIYC" title>http://books.google.com/books?id=Fge-BwqhqIYC</a>.</p></div>
+
+<div id="ref-lawvere2009conceptual">
+<p><span style="font-variant: small-caps;">Lawvere, F. and Schanuel, S.</span> 2009. <em>Conceptual mathematics: A first introduction to categories</em>. Cambridge University Press. <a href="http://books.google.com/books?id=h0zOGPlFmcQC" title>http://books.google.com/books?id=h0zOGPlFmcQC</a>.</p></div>
+
+<div id="ref-lane1998categories">
+<p><span style="font-variant: small-caps;">Mac Lane, S.</span> 1998. <em>Categories for the working mathematician</em>. U.S. Government Printing Office. <a href="http://books.google.com/books?id=MXboNPdTv7QC" title>http://books.google.com/books?id=MXboNPdTv7QC</a>.</p></div>
+
+<div id="ref-lane1999algebra">
+<p><span style="font-variant: small-caps;">Mac Lane, S. and Birkhoff, G.</span> 1999. <em>Algebra</em>. Chelsea Publishing Company. <a href="http://books.google.com/books?id=L6FENd8GHIUC" title>http://books.google.com/books?id=L6FENd8GHIUC</a>.</p></div>
+
+<div id="ref-marlow2013parallel">
+<p><span style="font-variant: small-caps;">Marlow, S.</span> 2013. <em>Parallel and concurrent programming in haskell: Techniques for multicore and multithreaded programming</em>. O’Reilly Media. <a href="http://books.google.com/books?id=wSkRAAAAQBAJ" title>http://books.google.com/books?id=wSkRAAAAQBAJ</a>.</p></div>
+
+<div id="ref-o2008real">
+<p><span style="font-variant: small-caps;">O’Sullivan, B., Goerzen, J., and Stewart, D.</span> 2008. <em>Real world haskell: Code you can believe in</em>. O’Reilly Media. <a href="http://book.realworldhaskell.org" title>http://book.realworldhaskell.org</a>.</p></div>
+
+<div id="ref-pinter2012book">
+<p><span style="font-variant: small-caps;">Pinter, C.</span> 2012. <em>A book of abstract algebra: Second edition</em>. Dover Publications. <a href="https://books.google.com/books?id=qviuEUavE4IC" title>https://books.google.com/books?id=qviuEUavE4IC</a>.</p></div>
+
+<div id="ref-tarski2013introduction">
+<p><span style="font-variant: small-caps;">Tarski, A.</span> 2013. <em>Introduction to logic: And to the methodology of deductive sciences</em>. Dover Publications. <a href="http://books.google.com/books?id=vtzCAgAAQBAJ" title>http://books.google.com/books?id=vtzCAgAAQBAJ</a>.</p></div>
+
+<div id="ref-thompson1999haskell">
+<p><span style="font-variant: small-caps;">Thompson, S.</span> 1999. <em>Haskell: The craft of functional programming</em>. Addison Wesley. <a href="http://books.google.com/books?id=a39QAAAAMAAJ" title>http://books.google.com/books?id=a39QAAAAMAAJ</a>.</p></div>
+
+<div id="ref-velleman2006prove">
+<p><span style="font-variant: small-caps;">Velleman, D.</span> 2006. <em>How to prove it: A structured approach</em>. Cambridge University Press. <a href="http://books.google.com/books?id=sXt-ROLLNHcC" title>http://books.google.com/books?id=sXt-ROLLNHcC</a>.</p></div></div>
 </div>
 
-        </div>
-        <div id="footer">
-            Site proudly generated by
-            <a href="http://jaspervdj.be/hakyll">Hakyll</a>
-        </div>
-    </body>
+      </article>
+
+    </section>
+
+    <script src="../js/prism.js"></script>
+    <script src="../js/katex.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/contrib/auto-render.min.js">
+    </script>
+    <script>
+    renderMathInElement(
+          document.body,
+          {
+              delimiters: [
+                  {left: "\\[", right: "\\]", display: true},
+                  {left: "\\(", right: "\\)", display: false}
+              ]
+          }
+    );
+    </script>
+  </body>
 </html>

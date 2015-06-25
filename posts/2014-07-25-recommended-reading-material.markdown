@@ -3,6 +3,23 @@ title: Recommended Reading Material
 description: Recommended reading material for learning Haskell, Algebra, Category Theory, etc.
 ---
 
+<style>
+dl, dt, dd {
+  float: left;
+}
+
+dd img {
+  position: relative;
+  float: left;
+  margin-right: 0.9em;
+  margin-bottom: 0.5em;
+  top: 0.5em;
+  -moz-box-shadow:    0px 0px 1px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 0px 0px 1px rgba(0,0,0,0.5);
+  box-shadow:         0px 0px 1px rgba(0,0,0,0.5);
+}
+</style>
+
 # Suggestions
 
 For **Haskell**, I suggest *Haskell: The Craft of Functional Programming* [@thompson1999haskell]
@@ -25,11 +42,18 @@ How to Prove It [@velleman2006prove]
     Required reading for anyone who is interested in writing or understanding proofs.
 
 Introduction to Logic [@tarski2013introduction]
-  ~ ![Introduction to Logic Cover](/images/logic.jpg)
+  ~ ![Introduction to Logic Cover](/images/logic.png)
     A monumental work by one of the greatest logicians of all time.
     Everyone should read this book.
 
 # Haskell
+
+Thinking Functionally with Haskell [@bird2014thinking]
+  ~ ![Thinking Functionally with Haskell](/images/thinking-functionally.jpeg)
+    As a modern rewrite of [@Bird98:Introduction], this is my new favorite
+    functional programming book. Explores the semantics and evaluation
+    models of Haskell in depth and ends with one of the most interesting
+    projects I've ever seen in a programming book.
 
 Introduction to Functional Programming using Haskell [@Bird98:Introduction]
   ~ ![Introduction to Functional Programming using Haskell Cover](/images/bird-intro-fp.jpg)
@@ -45,7 +69,7 @@ Programming in Haskell [@hutton2007programming]
     but it is an excellent introduction to the Haskell language.
 
 Real World Haskell [@o2008real]
-  ~ ![Real World Haskell Cover](/images/real-world-haskell.jpg)
+  ~ ![Real World Haskell Cover](/images/real-world-haskell.png)
     This book presents a pragmatic introduction to writing Haskell with a focus on performance.
     Unfortunately, it contains a number of errata and has become somewhat obsolete.
     Use the online version and read the comments as many of them correct errors or explain other issues.
@@ -107,7 +131,7 @@ Algebra [@lane1999algebra]
     *Algebra* will introduce you to Mac Lane's idiosyncratic style
     and is an excellent preparation for Category Theory.
 
-A Book of Abstract Algebra [@pinter2010book]
+A Book of Abstract Algebra [@pinter2012book]
   ~ ![](/images/pinter.jpg)
     "Accessible but rigorous", Pinter features plenty of exercises and uses an
     intuitive, informal, discussion-based approach rather than the more conventional

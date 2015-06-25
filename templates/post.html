@@ -1,8 +1,13 @@
-<div class="info">
+<header>
+  <h1>$title$</h1>
+  <p>
     Posted on $date$
     $if(author)$
-        by $author$
+    by $author$
     $endif$
-</div>
+  </p>
+</header>
 
-$body$
+<div class="body column--left">
+  $body$
+</div>

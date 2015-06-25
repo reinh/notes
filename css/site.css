@@ -1,0 +1,80 @@
+body > header {
+  opacity: 0.5;
+}
+
+body > header *,
+body > header h1,
+body > header ol,
+body > header li,
+body > header a {
+  font-weight: normal;
+  font-size: 1rem;
+  display: inline-block;
+  font-family: calluna-sans, sans-serif !important;
+  background-image: none !important;
+  text-shadow: none !important;
+}
+
+body > header h1::after {
+  content: " » ";
+}
+
+body > header li::after {
+  content: ", ";
+  font-size: 1rem;
+}
+
+body > header li:last-child:after {
+  content: "";
+}
+
+section article header h1 {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+section article header p {
+  margin-top: -0.5rem !important;
+  padding-top: 0 !important;
+  font-style: italic;
+  -webkit-font-feature-settings: 'dlig' 1, 'liga' 1, 'kern' 1;
+  -moz-font-feature-settings: 'dlig' 1, 'liga' 1, 'kern' 1;
+  -ms-font-feature-settings: 'dlig' 1, 'liga' 1, 'kern' 1;
+  -o-font-feature-settings: 'dlig' 1, 'liga' 1, 'kern' 1;
+  font-feature-settings: 'dlig' 1, 'liga' 1, 'kern' 1;
+}
+
+aside.sidenote ol {
+  margin-top: 0;
+  padding-top: 0;
+  padding-left: 0;
+}
+
+/* Responsive sidenotes */
+
+/* Hide the sidenotes by default. Mobile first or whatever. */
+article aside {
+  display: none;
+}
+
+/* Display the sidenotes and hide the footer on large enough screens */
+@media screen and (min-width: 640px) {
+  article .footnotes {
+    display: none;
+  }
+
+  article aside {
+    display: block;
+  }
+}
+
+ul.post-list li {
+  list-style-type: none;
+  font-family: calluna-sans, sans-serif;
+}
+
+span.date {
+  font-family: calluna-sans, sans-serif;
+  padding-right: 1rem;
+  font-style: italic;
+}
