@@ -1,106 +1,154 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Rein's Notes - Diff Lists, Cont, Yoneda, and Free Monad Optimizations</title>
-        <script type="text/javascript" src="//use.typekit.net/nmd2mgp.js"></script>
-        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-        <link rel="stylesheet" type="text/css" href="../css/default.css" />
-        <link rel="stylesheet" type="text/css" href="../css/syntax.css" />
-    </head>
-    <body>
-        <div id="header">
-            <div id="logo">
-                <a href="../">Rein's Notes</a>
-            </div>
-            <div id="navigation">
-                <a href="../">Home</a>
-                <a href="../archive.html">Archive</a>
-            </div>
-        </div>
+<!doctype html>
+<html lang>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <div id="content">
-            <h1>Diff Lists, Cont, Yoneda, and Free Monad Optimizations</h1>
+    <title>Rein's Notes - Diff Lists, Cont, Yoneda, and Free Monad Optimizations</title>
 
-            <div class="info">
+    <script src="//use.typekit.net/nmd2mgp.js"></script>
+    <script>try{Typekit.load();}catch(e){}</script>
+
+    <link rel="stylesheet" type="text/css" href="../css/katex.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/site.css">
+    <link rel="stylesheet" type="text/css" href="../css/prism.css">
+  </head>
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <header>
+      <h1><a href="../">Rein's Notes</a></h1>
+      <nav>
+        <ul>
+          <li><a href="../archive.html">Archive</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section>
+      <article>
+        <header>
+  <h1>Diff Lists, Cont, Yoneda, and Free Monad Optimizations</h1>
+  <p>
     Posted on July 16, 2014
     
-</div>
+  </p>
+</header>
 
-<p>A continuation in Haskell can be represented with the following type:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">newtype</span> <span class="dt">Cont</span> r a <span class="fu">=</span> <span class="dt">Cont</span> {<span class="ot"> runCont ::</span> (a <span class="ot">-&gt;</span> r) <span class="ot">-&gt;</span> r }</code></pre>
-<p>This type seems to be daunting to newer Haskell developers. How would you construct such a value? How would you <em>use</em> it once you've constructed it? How does this represent a continuation? What even is a continuation?</p>
-<p>Let's take a step back and think about what <a href="http://en.wikibooks.org/wiki/Haskell/Continuation_passing_style">continuation passing</a> does in simpler terms: A continuation is a function that is applied to the result of another computation. Continuation passing then inverts the usual control flow, where functions take values and provide values, by having functions take <em>another function</em>, the continuation, which will be <em>provided</em> with the value. This CPS transformation then is some sort of inversion of function application, so let's just try that and see what happens:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">:</span>t flip (<span class="fu">$</span>)
-a <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> b</code></pre>
-<p>By flipping function application, then, we get a function where you first supply a value and <em>then</em> supply some function, or <em>continuation</em>, to be applied to the value. Let's try this out:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">k <span class="fu">=</span> flip (<span class="fu">$</span>) <span class="dv">3</span>
+<div class="body column--left">
+  <p>A continuation in Haskell can be represented with the following type:</p>
 
-main <span class="fu">=</span> <span class="kw">do</span>
-  print <span class="fu">$</span> k succ
-  print <span class="fu">$</span> k show
-  print <span class="fu">$</span> k sqrt</code></pre>
-<pre class="output"><code>4
+<pre><code class="language-haskell">newtype Cont r a = Cont { runCont :: (a -&gt; r) -&gt; r }</code></pre>
+
+<p>This type seems to be daunting to newer Haskell developers. How would you construct such a value? How would you <em>use</em> it once you’ve constructed it? How does this represent a continuation? What even is a continuation?</p>
+
+<p>Let’s take a step back and think about what <a href="http://en.wikibooks.org/wiki/Haskell/Continuation_passing_style" title>continuation passing</a> does in simpler terms: A continuation is a function that is applied to the result of another computation. Continuation passing then inverts the usual control flow, where functions take values and provide values, by having functions take <em>another function</em>, the continuation, which will be <em>provided</em> with the value. This CPS transformation then is some sort of inversion of function application, so let’s just try that and see what happens:</p>
+
+<pre><code class="language-haskell">:t flip ($)
+a -&gt; (a -&gt; b) -&gt; b
+</code></pre>
+
+<p>By flipping function application, then, we get a function where you first supply a value and <em>then</em> supply some function, or <em>continuation</em>, to be applied to the value. Let’s try this out:</p>
+
+<pre><code class="language-haskell">k = flip ($) 3
+
+main = do
+  print $ k succ
+  print $ k show
+  print $ k sqrt</code></pre>
+
+<p>prints:</p>
+
+<pre><code class>4
 &quot;3&quot;
 1.7320508075688772</code></pre>
-<p>So <code>k</code> is a <em>suspended computation</em> that will apply the value <code>3</code> to any continuation that is passed to it. This is great, but what can we <em>do</em> with it? Let's start with a problem first tackled by John Hughes in 1986<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>, the list concatenation problem. The problem is this: constructing a list by repeatedly concatenating onto the end has <span class="math"><em>O</em>(2<sup><em>n</em></sup>)</span> performance. This is because each new concatenation must traverse the entire first list before it can add the second list.</p>
+
+<aside class="sidenote"><ol start="1"><li id="sn1"><div><p>Hughes, R. J. M. M. <em>A novel representation of lists and its application to the function &ldquo;reverse&rdquo;</em> Information processing letters 22.3 (1986): 141-144.</p></div></li></ol></aside><p>So <code>k</code> is a <em>suspended computation</em> that will apply the value <code>3</code> to any continuation that is passed to it. This is great, but what can we <em>do</em> with it? Let’s start with a problem first tackled by John Hughes in 1986<a id="fnref1" class="fnref" href="#fn1"><sup>1</sup></a>, the list concatenation problem. The problem is this: constructing a list by repeatedly concatenating onto the end has \(O(2^n)\) performance. This is because each new concatenation must traverse the entire first list before it can add the second list.</p>
+
 <p>The definition of <code>(++)</code> is</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">[]     <span class="fu">++</span> ys  <span class="fu">=</span> ys
-(x<span class="fu">:</span>xs) <span class="fu">++</span> ys  <span class="fu">=</span> x <span class="fu">:</span> xs <span class="fu">++</span> ys</code></pre>
+
+<pre><code class="language-haskell">[]     ++ ys  = ys
+(x:xs) ++ ys  = x : xs ++ ys</code></pre>
+
 <p>and the evaluation of <code>(&quot;foo&quot; ++ &quot;bar&quot;) ++ &quot;bizz&quot;</code> goes as follows:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">  (<span class="st">&quot;foo&quot;</span> <span class="fu">++</span> <span class="st">&quot;bar&quot;</span>) <span class="fu">++</span> <span class="st">&quot;bizz&quot;</span>
-<span class="fu">=</span> (<span class="ch">'f'</span> <span class="fu">:</span> <span class="st">&quot;oo&quot;</span> <span class="fu">++</span> <span class="st">&quot;bar&quot;</span>) <span class="fu">++</span> <span class="st">&quot;bizz&quot;</span>
-<span class="fu">=</span> (<span class="ch">'f'</span> <span class="fu">:</span> <span class="ch">'o'</span> <span class="fu">:</span> <span class="st">&quot;o&quot;</span> <span class="fu">++</span> <span class="st">&quot;bar&quot;</span>) <span class="fu">++</span> <span class="st">&quot;bizz&quot;</span>
-<span class="fu">=</span> (<span class="ch">'f'</span> <span class="fu">:</span> <span class="ch">'o'</span> <span class="fu">:</span> <span class="ch">'o'</span> <span class="fu">:</span> [] <span class="fu">++</span> <span class="st">&quot;bar&quot;</span>) <span class="fu">++</span> <span class="st">&quot;bizz&quot;</span>
-<span class="fu">=</span> (<span class="ch">'f'</span> <span class="fu">:</span> <span class="ch">'o'</span> <span class="fu">:</span> <span class="ch">'o'</span> <span class="fu">:</span> <span class="st">&quot;bar&quot;</span>) <span class="fu">++</span> <span class="st">&quot;bizz&quot;</span>
-<span class="fu">=</span> <span class="st">&quot;foobar&quot;</span> <span class="fu">++</span> <span class="st">&quot;bizz&quot;</span>
-<span class="fu">=</span> <span class="ch">'f'</span> <span class="fu">:</span> <span class="st">&quot;oobar&quot;</span> <span class="fu">++</span> <span class="st">&quot;bizz&quot;</span>
-<span class="fu">=</span> <span class="fu">...</span></code></pre>
+
+<pre><code class="language-haskell">  (&quot;foo&quot; ++ &quot;bar&quot;) ++ &quot;bizz&quot;
+= ('f' : &quot;oo&quot; ++ &quot;bar&quot;) ++ &quot;bizz&quot;
+= ('f' : 'o' : &quot;o&quot; ++ &quot;bar&quot;) ++ &quot;bizz&quot;
+= ('f' : 'o' : 'o' : [] ++ &quot;bar&quot;) ++ &quot;bizz&quot;
+= ('f' : 'o' : 'o' : &quot;bar&quot;) ++ &quot;bizz&quot;
+= &quot;foobar&quot; ++ &quot;bizz&quot;
+= 'f' : &quot;oobar&quot; ++ &quot;bizz&quot;
+= ...</code></pre>
+
 <p>and then the entire string <code>&quot;foobar&quot;</code> is traversed again to add <code>&quot;bizz&quot;</code>. The solution is to find some way to reassociate the concatenations so that they associate to the right. List concatenation is defined as right-associative because this gives linear performance:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">  <span class="st">&quot;foo&quot;</span> <span class="fu">++</span> (<span class="st">&quot;bar&quot;</span> <span class="fu">++</span> <span class="st">&quot;bizz&quot;</span>)
-<span class="fu">=</span> <span class="ch">'f'</span> <span class="fu">:</span> <span class="st">&quot;oo&quot;</span> <span class="fu">++</span> (<span class="st">&quot;bar&quot;</span> <span class="fu">++</span> <span class="st">&quot;bizz&quot;</span>)
-<span class="fu">=</span> <span class="ch">'f'</span> <span class="fu">:</span> <span class="ch">'o'</span> <span class="fu">:</span> <span class="st">&quot;o&quot;</span> <span class="fu">++</span> (<span class="st">&quot;bar&quot;</span> <span class="fu">++</span> <span class="st">&quot;bizz&quot;</span>)
-<span class="fu">=</span> <span class="ch">'f'</span> <span class="fu">:</span> <span class="ch">'o'</span> <span class="fu">:</span> <span class="ch">'o'</span> <span class="fu">:</span> [] <span class="fu">++</span> (<span class="st">&quot;bar&quot;</span> <span class="fu">++</span> <span class="st">&quot;bizz&quot;</span>)
-<span class="fu">=</span> <span class="ch">'f'</span> <span class="fu">:</span> <span class="ch">'o'</span> <span class="fu">:</span> <span class="ch">'o'</span> <span class="fu">:</span> (<span class="st">&quot;bar&quot;</span> <span class="fu">++</span> <span class="st">&quot;bizz&quot;</span>)
-<span class="fu">=</span> <span class="ch">'f'</span> <span class="fu">:</span> <span class="ch">'o'</span> <span class="fu">:</span> <span class="ch">'o'</span> <span class="fu">:</span> (<span class="ch">'b'</span> <span class="fu">:</span> <span class="st">&quot;ar&quot;</span> <span class="fu">++</span> <span class="st">&quot;bizz&quot;</span>)
-<span class="fu">=</span> <span class="ch">'f'</span> <span class="fu">:</span> <span class="ch">'o'</span> <span class="fu">:</span> <span class="ch">'o'</span> <span class="fu">:</span> (<span class="ch">'b'</span> <span class="fu">:</span> <span class="ch">'a'</span> <span class="fu">:</span> <span class="st">&quot;r&quot;</span> <span class="fu">++</span> <span class="st">&quot;bizz&quot;</span>)
-<span class="fu">=</span> <span class="ch">'f'</span> <span class="fu">:</span> <span class="ch">'o'</span> <span class="fu">:</span> <span class="ch">'o'</span> <span class="fu">:</span> (<span class="ch">'b'</span> <span class="fu">:</span> <span class="ch">'a'</span> <span class="fu">:</span> <span class="ch">'r'</span> <span class="fu">:</span> [] <span class="fu">++</span> <span class="st">&quot;bizz&quot;</span>)
-<span class="fu">=</span> <span class="ch">'f'</span> <span class="fu">:</span> <span class="ch">'o'</span> <span class="fu">:</span> <span class="ch">'o'</span> <span class="fu">:</span> (<span class="ch">'b'</span> <span class="fu">:</span> <span class="ch">'a'</span> <span class="fu">:</span> <span class="ch">'r'</span> <span class="fu">:</span> <span class="st">&quot;bizz&quot;</span>)
-<span class="fu">=</span> <span class="st">&quot;foobarbizz&quot;</span></code></pre>
-<p>Hughes' novel representation of lists is a <em>CPS transform</em>: Lists represented as <em>continuations</em>:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">rep    ::</span> [a] <span class="ot">-&gt;</span> ([a] <span class="ot">-&gt;</span> [a])
-rep s  <span class="fu">=</span> (s<span class="fu">++</span>)</code></pre>
+
+<pre><code class="language-haskell">  &quot;foo&quot; ++ (&quot;bar&quot; ++ &quot;bizz&quot;)
+= 'f' : &quot;oo&quot; ++ (&quot;bar&quot; ++ &quot;bizz&quot;)
+= 'f' : 'o' : &quot;o&quot; ++ (&quot;bar&quot; ++ &quot;bizz&quot;)
+= 'f' : 'o' : 'o' : [] ++ (&quot;bar&quot; ++ &quot;bizz&quot;)
+= 'f' : 'o' : 'o' : (&quot;bar&quot; ++ &quot;bizz&quot;)
+= 'f' : 'o' : 'o' : ('b' : &quot;ar&quot; ++ &quot;bizz&quot;)
+= 'f' : 'o' : 'o' : ('b' : 'a' : &quot;r&quot; ++ &quot;bizz&quot;)
+= 'f' : 'o' : 'o' : ('b' : 'a' : 'r' : [] ++ &quot;bizz&quot;)
+= 'f' : 'o' : 'o' : ('b' : 'a' : 'r' : &quot;bizz&quot;)
+= &quot;foobarbizz&quot;</code></pre>
+
+<p>Hughes’ novel representation of lists is a <em>CPS transform</em>: Lists represented as <em>continuations</em>:</p>
+
+<pre><code class="language-haskell">rep    :: [a] -&gt; ([a] -&gt; [a])
+rep s  = (s++)</code></pre>
+
 <p>This <em>representation</em> can be transformed back into the underlying abstract data type, or <em>abstraction</em>, by applying it to the empty list:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">abs<span class="ot">    ::</span> ([a] <span class="ot">-&gt;</span> [a]) <span class="ot">-&gt;</span> [a]
-abs f  <span class="fu">=</span> f []</code></pre>
+
+<pre><code class="language-haskell">abs    :: ([a] -&gt; [a]) -&gt; [a]
+abs f  = f []</code></pre>
+
 <p>The choice of empty list is not arbitrary: <code>rep</code> and <code>abs</code> witness an isomorphism between the <em>free monoid</em>, a.k.a. <code>[a]</code>, and the <em>endomorphism monoid</em>, <code>a -&gt; a</code>. These monoids are given as:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">Monoid</span> [] <span class="kw">where</span>
-  mempty   <span class="fu">=</span> []
-  mappend  <span class="fu">=</span> (<span class="fu">++</span>)
 
-<span class="kw">newtype</span> <span class="dt">Endo</span> a <span class="fu">=</span> <span class="dt">Endo</span> {<span class="ot"> appEndo ::</span> (a <span class="ot">-&gt;</span> a) }
+<pre><code class="language-haskell">instance Monoid [] where
+  mempty   = []
+  mappend  = (++)
 
-<span class="kw">instance</span> <span class="dt">Monoid</span> <span class="dt">Endo</span> <span class="kw">where</span>
-  mempty   <span class="fu">=</span> id
-  mappend  <span class="fu">=</span> (<span class="fu">.</span>)</code></pre>
+newtype Endo a = Endo { appEndo :: (a -&gt; a) }
+
+instance Monoid Endo where
+  mempty   = id
+  mappend  = (.)</code></pre>
+
 <p>This means that <code>rep</code> and <code>abs</code> are <em>monoid morphisms</em>, which implies that the equivalent to string concatenation in this CPS representation is function composition, and indeed it is so:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">&gt;</span> abs <span class="fu">$</span> rep <span class="st">&quot;foo&quot;</span> <span class="fu">.</span> rep <span class="st">&quot;bar&quot;</span> <span class="fu">.</span> rep <span class="st">&quot;bizz&quot;</span>
-<span class="st">&quot;foobarbiz&quot;</span></code></pre>
+
+<pre><code class="language-haskell">&gt; abs $ rep &quot;foo&quot; . rep &quot;bar&quot; . rep &quot;bizz&quot;
+&quot;foobarbiz&quot;</code></pre>
+
 <div class="references">
-
 </div>
-<div class="footnotes">
-<hr />
-<ol>
-<li id="fn1"><p>Hughes, R. J. M. M. &quot;A novel representation of lists and its application to the function “reverse”.&quot; Information processing letters 22.3 (1986): 141-144.<a href="#fnref1">↩</a></p></li>
-</ol>
+<footer><hr class="footnotes"><ol class="footnotes">
+<li id="fn1"><p>Hughes, R. J. M. M. <em>A novel representation of lists and its application to the function &ldquo;reverse&rdquo;</em> Information processing letters 22.3 (1986): 141-144. <a href="#fnref1" class="fnref">↩</a></p></li>
+</ol></footer>
 </div>
 
-        </div>
-        <div id="footer">
-            Site proudly generated by
-            <a href="http://jaspervdj.be/hakyll">Hakyll</a>
-        </div>
-    </body>
+      </article>
+
+    </section>
+
+    <script src="../js/prism.js"></script>
+    <script src="../js/katex.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/contrib/auto-render.min.js">
+    </script>
+    <script>
+    renderMathInElement(
+          document.body,
+          {
+              delimiters: [
+                  {left: "\\[", right: "\\]", display: true},
+                  {left: "\\(", right: "\\)", display: false}
+              ]
+          }
+    );
+    </script>
+  </body>
 </html>
