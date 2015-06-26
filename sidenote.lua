@@ -281,6 +281,11 @@ function DefinitionList(items)
   return "<dl>\n" .. table.concat(buffer, "\n") .. "\n</dl>"
 end
 
+function SingleQuoted(s)
+  return '&lsquo;' .. s .. '&rsquo;'
+end
+
+
 function DoubleQuoted(s)
   return '&ldquo;' .. s .. '&rdquo;'
 end

@@ -135,6 +135,76 @@ body p {
       margin-bottom: 1.37631rem;
       padding-top: 0.62369rem; } }
 
+body header p {
+  -webkit-font-feature-settings: 'dlig' 1, 'liga' 1, 'kern' 1;
+  -moz-font-feature-settings: 'dlig' 1, 'liga' 1, 'kern' 1;
+  -ms-font-feature-settings: 'dlig' 1, 'liga' 1, 'kern' 1;
+  -o-font-feature-settings: 'dlig' 1, 'liga' 1, 'kern' 1;
+  font-feature-settings: 'dlig' 1, 'liga' 1, 'kern' 1;
+  color: #2E2E2E;
+  font-family: calluna-sans, sans-serif;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1rem;
+  font-size: 1.19167rem;
+  margin-bottom: 0.88728rem;
+  padding-top: 0.11272rem; }
+  @media screen and (min-width: 40em) {
+    body header p {
+      font-size: 1.09286rem;
+      margin-bottom: 0.85517rem;
+      padding-top: 0.14483rem; } }
+  @media screen and (min-width: 50em) {
+    body header p {
+      font-size: 1.08667rem;
+      margin-bottom: 0.85316rem;
+      padding-top: 0.14684rem; } }
+  @media screen and (min-width: 64em) {
+    body header p {
+      font-size: 0.99412rem;
+      margin-bottom: 0.82308rem;
+      padding-top: 0.17692rem; } }
+  @media screen and (min-width: 100em) {
+    body header p {
+      font-size: 0.92632rem;
+      margin-bottom: 0.80104rem;
+      padding-top: 0.19896rem; } }
+
+body p.lead {
+  -webkit-font-feature-settings: 'liga' 1, 'lnum' 1, 'kern' 1;
+  -moz-font-feature-settings: 'liga' 1, 'lnum' 1, 'kern' 1;
+  -ms-font-feature-settings: 'liga' 1, 'lnum' 1, 'kern' 1;
+  -o-font-feature-settings: 'liga' 1, 'lnum' 1, 'kern' 1;
+  font-feature-settings: 'liga' 1, 'lnum' 1, 'kern' 1;
+  color: #2E2E2E;
+  font-family: calluna-sans, sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 2rem;
+  font-size: 1.66667rem;
+  margin-bottom: 1.54166rem;
+  padding-top: 0.45834rem; }
+  @media screen and (min-width: 40em) {
+    body p.lead {
+      font-size: 1.52143rem;
+      margin-bottom: 1.49445rem;
+      padding-top: 0.50555rem; } }
+  @media screen and (min-width: 50em) {
+    body p.lead {
+      font-size: 1.5rem;
+      margin-bottom: 1.48749rem;
+      padding-top: 0.51251rem; } }
+  @media screen and (min-width: 64em) {
+    body p.lead {
+      font-size: 1.57059rem;
+      margin-bottom: 1.51043rem;
+      padding-top: 0.48957rem; } }
+  @media screen and (min-width: 100em) {
+    body p.lead {
+      font-size: 1.63684rem;
+      margin-bottom: 1.53196rem;
+      padding-top: 0.46804rem; } }
+
 body h1, body h2, body h3, body h4, body h5, body h6 {
   -webkit-font-feature-settings: 'liga' 1, 'lnum' 1, 'kern' 1;
   -moz-font-feature-settings: 'liga' 1, 'lnum' 1, 'kern' 1;

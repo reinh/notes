@@ -24,5 +24,6 @@ executable notes
                      , containers >= 0.5.6.2
                      , hakyll
                      , pandoc >= 1.14
+                     , pandoc-citeproc >= 0.7.2
   -- hs-source-dirs:
   default-language:    Haskell2010

@@ -1,6 +1,10 @@
 {-# LANGUAGE OverloadedStrings #-}
+
+import qualified Data.Map            as M
 import qualified Data.Set            as S
 import           Hakyll
+import qualified Text.CSL            as CSL
+import           Text.CSL.Pandoc     (processCites)
 import           Text.Pandoc
 import           Text.Pandoc.Options
 
@@ -82,8 +86,13 @@ compiler =
      bib <- load (fromFilePath "bib/bib.bib")
      csl <- load (fromFilePath "bib/csl.csl")
      body <- getResourceBody
-     pandoc <- readPandocBiblio ropts csl bib body :: Compiler (Item Pandoc)
+     pandoc <- readPandocBiblio' ropts csl bib body
      withItemBody (sidenoteWriter wopts) pandoc
+  where
+    setMeta :: Pandoc -> Pandoc
+    setMeta (Pandoc (Meta meta) blocks) = Pandoc (Meta meta') blocks
+      where
+        meta' = M.insert "reference-section-title" (MetaString "References") meta
 
 ropts :: ReaderOptions
 ropts =
@@ -106,3 +115,28 @@ wopts =
 sidenoteWriter :: WriterOptions -> Pandoc -> Compiler String
 sidenoteWriter wopt pandoc =
   unsafeCompiler (writeCustom "sidenote.lua" wopt pandoc)
+
+readPandocBiblio' :: ReaderOptions
+                  -> Item CSL
+                  -> Item Biblio
+                  -> (Item String)
+                  -> Compiler (Item Pandoc)
+readPandocBiblio' ropt csl biblio item = do
+    -- Parse CSL file, if given
+    style <- unsafeCompiler $ CSL.readCSLFile Nothing . toFilePath . itemIdentifier $ csl
+
+    -- We need to know the citation keys, add then *before* actually parsing the
+    -- actual page. If we don't do this, pandoc won't even consider them
+    -- citations!
+    let Biblio refs = itemBody biblio
+    pandoc <- setMeta . itemBody <$> readPandocWith ropt item
+    let pandoc' = processCites style refs pandoc
+
+    return $ fmap (const pandoc') item
+  where
+    setMeta :: Pandoc -> Pandoc
+    setMeta (Pandoc (Meta meta) blocks) = Pandoc (Meta meta') blocks
+      where
+        meta' = M.insert "reference-section-title" (MetaString "References")
+              $ M.insert "link-citations" (MetaBool True)
+              $ meta

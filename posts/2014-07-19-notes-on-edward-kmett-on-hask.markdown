@@ -4,9 +4,11 @@ tags: Kmettoverse
 description: Some notes on Edward Kmett's recent talk on building Hask with Haskell.
 ---
 
-\newcommand{\cat}[1]{\mathcal{#1}}
+<p class="lead">
+Rambling and incomplete notes on [Edward Kmett][kmett]'s talk [on Hask][hask].
+</p>
 
-Notes on [Edward Kmett][kmett]'s talk [Edward Kmett on Hask][hask].
+\newcommand{\cat}[1]{\mathcal{#1}}
 
 [kmett]: http://comonad.com
 [hask]: https://www.youtube.com/watch?v=Klwkt9oJwg0

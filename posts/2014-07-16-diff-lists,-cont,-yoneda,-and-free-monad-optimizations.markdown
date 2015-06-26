@@ -1,9 +1,15 @@
 ---
 title: Diff Lists, Cont, Yoneda, and Free Monad Optimizations
-tags: Yoneda
-description: Optimize the asymptotic complexity of free monads with
-             this one weird trick!
 ---
+
+<p class="lead">
+What do [difference lists][difflist], [continuations], the [Yoneda lemma][yoneda], and the [Codensity trick][codensity] have in common?
+</p>
+
+[difflist]: https://wiki.haskell.org/Difference_list
+[continuations]: https://en.wikibooks.org/wiki/Haskell/Continuation_passing_style
+[yoneda]: https://www.fpcomplete.com/user/bartosz/understanding-yoneda
+[codensity]: http://comonad.com/reader/2011/free-monads-for-less/
 
 A continuation in Haskell can be represented with the following type:
 
@@ -51,13 +57,13 @@ prints:
 1.7320508075688772
 ```
 
-So `k` is a *suspended computation* that will apply the value `3` to any continuation that is passed to it.
-This is great, but what can we *do* with it? Let's start with a problem first tackled by John Hughes in 1986[^hughes],
-the list concatenation problem.
-The problem is this: constructing a list by repeatedly concatenating onto the end has $O(2^n)$ performance.
-This is because each new concatenation must traverse the entire first list before it can add the second list.
-
-[^hughes]: Hughes, R. J. M. M. *A novel representation of lists and its application to the function "reverse"* Information processing letters 22.3 (1986): 141-144.
+So `k` is a *suspended computation* that will apply the value `3` to
+any continuation that is passed to it. This is great, but what can we
+*do* with it? Let's start with a problem first tackled by
+@hughes1986novel, the list concatenation problem. The problem is this:
+constructing a list by repeatedly concatenating onto the end has
+$O(2^n)$ performance. This is because each new concatenation must
+traverse the entire first list before it can add the second list.
 
 The definition of `(++)` is
 

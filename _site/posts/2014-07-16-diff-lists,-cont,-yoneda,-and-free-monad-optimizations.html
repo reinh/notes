@@ -39,7 +39,13 @@
 </header>
 
 <div class="body column--left">
-  <p>A continuation in Haskell can be represented with the following type:</p>
+  <p class="lead">
+
+What do <a href="https://wiki.haskell.org/Difference_list" title>difference lists</a>, <a href="https://en.wikibooks.org/wiki/Haskell/Continuation_passing_style" title>continuations</a>, the <a href="https://www.fpcomplete.com/user/bartosz/understanding-yoneda" title>Yoneda lemma</a>, and the <a href="http://comonad.com/reader/2011/free-monads-for-less/" title>Codensity trick</a> have in common?
+
+</p>
+
+<p>A continuation in Haskell can be represented with the following type:</p>
 
 <pre><code class="language-haskell">newtype Cont r a = Cont { runCont :: (a -&gt; r) -&gt; r }</code></pre>
 
@@ -66,7 +72,7 @@ main = do
 &quot;3&quot;
 1.7320508075688772</code></pre>
 
-<aside class="sidenote"><ol start="1"><li id="sn1"><div><p>Hughes, R. J. M. M. <em>A novel representation of lists and its application to the function &ldquo;reverse&rdquo;</em> Information processing letters 22.3 (1986): 141-144.</p></div></li></ol></aside><p>So <code>k</code> is a <em>suspended computation</em> that will apply the value <code>3</code> to any continuation that is passed to it. This is great, but what can we <em>do</em> with it? Let’s start with a problem first tackled by John Hughes in 1986<a id="fnref1" class="fnref" href="#fn1"><sup>1</sup></a>, the list concatenation problem. The problem is this: constructing a list by repeatedly concatenating onto the end has \(O(2^n)\) performance. This is because each new concatenation must traverse the entire first list before it can add the second list.</p>
+<p>So <code>k</code> is a <em>suspended computation</em> that will apply the value <code>3</code> to any continuation that is passed to it. This is great, but what can we <em>do</em> with it? Let’s start with a problem first tackled by <span class="cite" data-citation-ids="hughes1986novel">Hughes [<a href="#ref-hughes1986novel" title>1986</a>]</span>, the list concatenation problem. The problem is this: constructing a list by repeatedly concatenating onto the end has \(O(2^n)\) performance. This is because each new concatenation must traverse the entire first list before it can add the second list.</p>
 
 <p>The definition of <code>(++)</code> is</p>
 
@@ -125,10 +131,10 @@ instance Monoid Endo where
 &quot;foobarbiz&quot;</code></pre>
 
 <div class="references">
-</div>
-<footer><hr class="footnotes"><ol class="footnotes">
-<li id="fn1"><p>Hughes, R. J. M. M. <em>A novel representation of lists and its application to the function &ldquo;reverse&rdquo;</em> Information processing letters 22.3 (1986): 141-144. <a href="#fnref1" class="fnref">↩</a></p></li>
-</ol></footer>
+<h1 id="bibliography" class="unnumbered">References</h1>
+
+<div id="ref-hughes1986novel">
+<p><span style="font-variant: small-caps;">Hughes, R.J.M.</span> 1986. A novel representation of lists and its application to the function “reverse”. <em>Information processing letters</em> <em>22</em>, 3, 141–144.</p></div></div>
 </div>
 
       </article>

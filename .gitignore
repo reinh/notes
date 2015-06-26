@@ -1,5 +1,6 @@
 *.hi
 *.o
 _cache/
+dist/
 
 .DS_store

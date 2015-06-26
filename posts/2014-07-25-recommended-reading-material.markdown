@@ -1,7 +1,12 @@
 ---
 title: Recommended Reading Material
-description: Recommended reading material for learning Haskell, Algebra, Category Theory, etc.
+description: A collection of recommended reading material for learning Haskell, Algebra, Category Theory, and such.
 ---
+
+<p class="lead">
+A collection of recommended reading material for learning Haskell, Abstract Algebra, Category Theory, and such.
+You don't need to read *everything* if you're only interested in learning Haskell---but it wouldn't hurt!
+</p>
 
 <style>
 dl, dt, dd {
@@ -22,8 +27,8 @@ dd img {
 
 # Suggestions
 
-For **Haskell**, I suggest *Haskell: The Craft of Functional Programming* [@thompson1999haskell]
-and *Introduction to Functional Programming using Haskell* [@Bird98:Introduction].
+For **Haskell**, I suggest *Thinking Functionally with Haskell* [@bird2014thinking]
+and *Haskell: The Craft of Functional Programming* [@thompson1999haskell].
 *Real World Haskell* [@o2008real] can be used but it must be read carefully as it is out of date and contains a significant number of errata.
 
 For **Category Theory**, I suggest Lawvere's *Conceptual Mathematics* [-@lawvere2009conceptual], Awodey's *Category Theory* [-@awodey2010category],
@@ -148,5 +153,3 @@ Algebra [@lang2002algebra]
 
 [words]: http://www.amazon.com/review/R2MHDPXKDJRWA2/ref=cm_cr_dp_cmt?ie=UTF8&ASIN=0821816462&nodeID=283155&store=books
 [ollie]: http://ocharles.org.uk
-
-# References
