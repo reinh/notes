@@ -88,6 +88,9 @@ a {
     color: #0B348B;
     text-decoration: none; }
 
+cite {
+  font-style: italic; }
+
 body p a, body li a {
   background-image: -webkit-linear-gradient(top, transparent 50%, #709cf9 50%);
   background-image: -moz-linear-gradient(top, transparent 50%, #709cf9 50%);
@@ -441,64 +444,93 @@ body b, body strong, body .bold {
 body em, body i, body .italic {
   font-style: italic; }
 
-body aside, body small, body .caption {
+body div.references {
+  font-family: calluna-sans, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.19167rem; }
+  @media screen and (min-width: 40em) {
+    body div.references {
+      font-size: 1.09286rem; } }
+  @media screen and (min-width: 50em) {
+    body div.references {
+      font-size: 1.08667rem; } }
+  @media screen and (min-width: 64em) {
+    body div.references {
+      font-size: 0.99412rem; } }
+  @media screen and (min-width: 100em) {
+    body div.references {
+      font-size: 0.92632rem; } }
+
+body aside, body small, body .caption, body figcaption {
   font-family: calluna-sans, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 1.06667rem; }
   @media screen and (min-width: 40em) {
-    body aside, body small, body .caption {
+    body aside, body small, body .caption, body figcaption {
       font-size: 0.97143rem; } }
   @media screen and (min-width: 50em) {
-    body aside, body small, body .caption {
+    body aside, body small, body .caption, body figcaption {
       font-size: 0.96rem; } }
   @media screen and (min-width: 64em) {
-    body aside, body small, body .caption {
+    body aside, body small, body .caption, body figcaption {
       font-size: 0.88235rem; } }
   @media screen and (min-width: 100em) {
-    body aside, body small, body .caption {
+    body aside, body small, body .caption, body figcaption {
       font-size: 0.82105rem; } }
-  body aside code, body small code, body .caption code {
+  body aside code, body small code, body .caption code, body figcaption code {
     font-size: 0.95833rem; }
     @media screen and (min-width: 40em) {
-      body aside code, body small code, body .caption code {
+      body aside code, body small code, body .caption code, body figcaption code {
         font-size: 0.91429rem; } }
     @media screen and (min-width: 50em) {
-      body aside code, body small code, body .caption code {
+      body aside code, body small code, body .caption code, body figcaption code {
         font-size: 0.87333rem; } }
     @media screen and (min-width: 64em) {
-      body aside code, body small code, body .caption code {
+      body aside code, body small code, body .caption code, body figcaption code {
         font-size: 0.74706rem; } }
     @media screen and (min-width: 100em) {
-      body aside code, body small code, body .caption code {
+      body aside code, body small code, body .caption code, body figcaption code {
         font-size: 0.65789rem; } }
 
-body aside, body small {
+body aside, body small, body .caption, body figcaption {
   line-height: 1rem; }
 
-body .caption {
-  color: #BDC8CC;
+body .caption, body figcaption {
+  color: #494949;
   line-height: 2rem;
   margin-bottom: 1.34666rem;
   padding-top: 0.65334rem; }
   @media screen and (min-width: 40em) {
-    body .caption {
+    body .caption, body figcaption {
       margin-bottom: 1.3157rem;
       padding-top: 0.6843rem; } }
   @media screen and (min-width: 50em) {
-    body .caption {
+    body .caption, body figcaption {
       margin-bottom: 1.31199rem;
       padding-top: 0.68801rem; } }
   @media screen and (min-width: 64em) {
-    body .caption {
+    body .caption, body figcaption {
       margin-bottom: 1.28675rem;
       padding-top: 0.71325rem; } }
   @media screen and (min-width: 100em) {
-    body .caption {
+    body .caption, body figcaption {
       margin-bottom: 1.26683rem;
       padding-top: 0.73317rem; } }
 
-body h1 + .caption, body .alpha + .caption, body h2 + .caption, body .beta + .caption, body h3 + .caption, body .gamma + .caption {
+body figure figcaption {
+  text-align: center; }
+
+body .sidenote figure {
+  max-width: 300px; }
+  body .sidenote figure img {
+    max-width: 300px; }
+  body .sidenote figure figcaption {
+    text-align: left;
+    margin-top: 0; }
+
+body h1 + .caption, body .alpha + .caption, body h2 + .caption, body .beta + .caption, body h3 + .caption, body .gamma + .caption, body figure figcaption {
   margin-top: -1rem; }
 
 body .delta + .caption, body .epsilon + .caption, body .zeta + .caption {
@@ -532,9 +564,9 @@ body blockquote p {
     margin-left: -1rem; } }
 
 body hr {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(#BDC8CC));
-  background-image: -webkit-linear-gradient(top, transparent 50%, #BDC8CC 50%);
-  background-image: linear-gradient(to bottom, transparent 50%, #BDC8CC 50%);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(#494949));
+  background-image: -webkit-linear-gradient(top, transparent 50%, #494949 50%);
+  background-image: linear-gradient(to bottom, transparent 50%, #494949 50%);
   background-position: 0 50%;
   background-repeat: repeat-x;
   background-size: 100% 0.15rem;
@@ -584,7 +616,7 @@ body .upper {
   letter-spacing: 0.1rem;
   text-transform: uppercase; }
 
-body .small-caps {
+body .small-caps, body .newthought {
   -webkit-font-feature-settings: 'smcp' 1, 'kern' 1;
   -moz-font-feature-settings: 'smcp' 1, 'kern' 1;
   -ms-font-feature-settings: 'smcp' 1, 'kern' 1;

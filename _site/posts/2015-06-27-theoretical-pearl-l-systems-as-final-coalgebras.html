@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>Rein's Notes - Theoretical Pearl: L-systems as Final Coalgebras</title>
+
+    <script src="//use.typekit.net/nmd2mgp.js"></script>
+    <script>try{Typekit.load();}catch(e){}</script>
+
+    <link rel="stylesheet" type="text/css" href="../css/katex.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/site.css">
+    <link rel="stylesheet" type="text/css" href="../css/prism.css">
+  </head>
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <header>
+      <h1><a href="../">Rein's Notes</a></h1>
+      <!-- <nav> -->
+      <!--   <ul> -->
+      <!--     <li><a href="/archive.html">Archive</a></li> -->
+      <!--   </ul> -->
+      <!-- </nav> -->
+    </header>
+
+    <section>
+      <article>
+        <header>
+  <h1>Theoretical Pearl: L-systems as Final Coalgebras</h1>
+  <p>
+    Posted on June 27, 2015
+    
+  </p>
+</header>
+
+<div class="body column--left">
+  <aside class="sidenote">
+
+<figure><img src="../images/640px-Fractal_weeds.jpg" alt="Figure 1: Weeds created with a 3D L-system [Wikipedia 2015]"><figcaption class="caption">Figure 1: Weeds created with a 3D L-system <span class="cite" data-citation-ids="wiki:lsystem">[Wikipedia <a href="#ref-wiki:lsystem" title>2015</a>]</span></figcaption></figure>
+
+</aside>
+
+<p class="lead">
+
+<a href="TODO" title>Denotational design</a> gives an elegant representation of <a href="TODO" title>L-systems</a> as fixed points of a coalgebra.
+
+</p>
+
+<p><span class="newthought">L-systems were created</span> in 1968 by Aristid Lindenmeyer to model the behavior of plant cells. As <em>rewriting systems</em>, they start with a simple object and repeatedly replace parts of it using a set of <em>rewriting rules</em> or <em>productions</em> <span class="cite" data-citation-ids="prusinkiewicz2012algorithmic">[Prusinkiewicz et al. <a href="#ref-prusinkiewicz2012algorithmic" title>2012</a>:13]</span>. They can be used to generate fractals and other self-similar images (see fig. 1).</p>
+
+<aside class="sidenote"><ol start="1"><li id="sn1"><div><p>A deterministic L-system is one where each symbol has only one production rule. It is context-free when the production rules are only aware of the symbol itself and not any of its neighbors.</p></div></li></ol></aside><p>A simple L-system consists of an alphabet of symbols, an initial axiom (or starting string), and a set of production rules that expand each symbol into a string. Formally, a <em>deterministic</em>, <em>context-free</em> L-system<a id="fnref1" class="fnref" href="#fn1"><sup>1</sup></a> (or <span class="lining-numerals">D0L-system</span>) is defined as a tuple \[L = (\Sigma,\omega,P)\] where \(\Sigma\) is the alphabet, \(\omega\) the axiom, and \(P\) the collection of production rules.</p>
+
+<p>Consider the first example of an <span class="lining-numerals">D0L-system</span> given by <span class="cite" data-citation-ids="prusinkiewicz2012algorithmic">Prusinkiewicz et al. [<a href="#ref-prusinkiewicz2012algorithmic" title>2012</a>:15]</span>. It is built from alphabet \(\{a,b\}\), rewrite rules \(\{a \mapsto ab,b \mapsto a\}\), and starting string \(b\). We can use a Haskell representation where the symbols are characters, the words are strings, and the rules are functions from characters to strings:</p>
+
+<pre><code class="language-haskell">data D0L = D0L
+  { axiom :: String
+  , rules :: Char -&gt; String
+  }
+
+example :: D0L
+example = D0L &quot;b&quot; rules
+  where rules 'a' = &quot;ab&quot;
+        rules 'b' = &quot;a&quot;</code></pre>
+
+<p>In each step of the rewriting process, each letter in the string is replaced according to its production rule. In our Haskell representation, a step takes a <code>D0L</code>, applies the rules to the axiom, and gives a new <code>D0L</code> with the new string as its axiom and the same set of rules. We can use type driven development and a theorem prover to fill in the holes:</p>
+
+<pre><code class="language-haskell">step :: D0L -&gt; D0L
+step (D0L axm rls) = D0L (_run axm rls) rls</code></pre>
+
+<p>GHC gives us the type of the hole</p>
+
+<pre><code class>Found hole ‘_run’ with type: String -&gt; (Char -&gt; String) -&gt; String</code></pre>
+
+<aside class="sidenote"><ol start="2"><li id="sn2"><div><p><code>String</code> is replaced by <code>[Char]</code> because Exference doesn’t support type synonyms.</p></div></li></ol></aside><p>and we can ask the <a href="https://github.com/lspitzner/exference" title>Exference</a> theorem prover to give us a suitable implementation<a id="fnref2" class="fnref" href="#fn2"><sup>2</sup></a></p>
+
+<pre><code class="language-haskell">:exf [Char] -&gt; (Char -&gt; [Char]) -&gt; [Char]
+(&gt;&gt;=)</code></pre>
+
+<p>which gives us</p>
+
+<pre><code class="language-haskell">step :: D0L -&gt; D0L
+step (D0L axm rls) = D0L (axm &gt;&gt;= rls) rls</code></pre>
+
+<p>Since <code>step</code> is a specialization of <code>(&gt;&gt;=)</code>, let’s make it fully general</p>
+
+<pre><code class="language-haskell">data D0L m a = D0L
+  { axiom :: m a
+  , rules :: a -&gt; m a
+  }
+
+step :: Monad m =&gt; D0L m a -&gt; D0L m a
+step (D0L axm rls) = D0L (axm &gt;&gt;= rls) rls</code></pre>
+
+<p>and we can see that <code>D0L</code> is really just packaging up the arguments to <code>(&gt;&gt;=)</code>!</p>
+
+<p>Generating a list of iterations for a <code>D0L</code> is</p>
+
+<pre><code class="language-haskell">generate :: Monad m =&gt; D0L m a -&gt; [D0L m a]
+generate = iterate step</code></pre>
+
+<p>which repeatedly (coiteratively) applies the <code>rules</code> to the <code>axiom</code>. This makes <code>generate</code> a fixed point of the <code>rules</code> <code>m</code>-coalgebra.</p>
+
+<p>Now we can generate first six steps of its derivation and check our work with fig. 2.</p>
+
+<aside class="sidenote">
+
+<figure><img src="../images/abaababa.png" alt="Figure 2: Derivation of the example from Prusinkiewicz et al. [2012:16]"><figcaption class="caption">Figure 2: Derivation of the example from <span class="cite" data-citation-ids="prusinkiewicz2012algorithmic">Prusinkiewicz et al. [<a href="#ref-prusinkiewicz2012algorithmic" title>2012</a>:16]</span></figcaption></figure>
+
+</aside>
+
+<pre><code class="language-haskell">&gt; mapM_ (putStrLn . axiom) . take 6 $ generate example
+b
+a
+ab
+aba
+abaab
+abaababa</code></pre>
+
+<hr />
+
+<div class="references">
+<div id="ref-prusinkiewicz2012algorithmic">
+<p><span style="font-variant: small-caps;">Prusinkiewicz, P., Hanan, J., Fracchia, F., et al.</span> 2012. <em>The algorithmic beauty of plants</em>. Springer New York. <a href="https://books.google.com/books?id=4F7lBwAAQBAJ" title>https://books.google.com/books?id=4F7lBwAAQBAJ</a>.</p></div>
+
+<div id="ref-wiki:lsystem">
+<p><span style="font-variant: small-caps;">Wikipedia</span>. 2015. L-system. <a href="https://en.wikipedia.org/wiki/L-system" title>https://en.wikipedia.org/wiki/L-system</a>.</p></div></div>
+<footer><hr class="footnotes"><ol class="footnotes">
+<li id="fn1"><p>A deterministic L-system is one where each symbol has only one production rule. It is context-free when the production rules are only aware of the symbol itself and not any of its neighbors. <a href="#fnref1" class="fnref">↩</a></p></li>
+<li id="fn2"><p><code>String</code> is replaced by <code>[Char]</code> because Exference doesn’t support type synonyms. <a href="#fnref2" class="fnref">↩</a></p></li>
+</ol></footer>
+</div>
+
+      </article>
+
+    </section>
+
+    <script src="../js/prism.js"></script>
+    <script src="../js/katex.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/contrib/auto-render.min.js">
+    </script>
+    <script>
+    renderMathInElement(
+          document.body,
+          {
+              delimiters: [
+                  {left: "\\[", right: "\\]", display: true},
+                  {left: "\\(", right: "\\)", display: false}
+              ]
+          }
+    );
+    </script>
+  </body>
+</html>

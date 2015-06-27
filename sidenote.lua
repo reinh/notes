@@ -27,6 +27,11 @@ local function tprint (tbl, indent)
   end
 end
 
+-- Strip tags
+local function strip_tags(s)
+  return s:gsub("<.->", "")
+end
+
 -- Character escaping
 local function escape(s, in_attribute)
   return s:gsub("[<>&\"']",
@@ -354,13 +359,17 @@ function Div(s, attr)
   return "<div" .. attributes(attr) .. ">\n" .. s .. "</div>"
 end
 
-function CaptionedImage(src, tit, txt)
-  local content = '<img src="' .. src .. '" alt="' .. txt .. '">'
-  content = content .. '<p class="caption">' .. tit .. '</p>'
-  return '<div class="captioned-image">' .. content .. '</div>'
+function CaptionedImage(src, tit, alt)
+  local content = '<img src="' .. escape(src,true) .. '" alt="' .. strip_tags(alt,true) .. '">'
+  content = content .. '<figcaption class="caption">' .. alt .. '</figcaption>'
+  return '<figure>' .. content .. '</figure>'
 end
 
 function RawBlock(format, s)
+  return s
+end
+
+function RawInline(format, s)
   return s
 end
 

@@ -15,7 +15,7 @@ body > header a {
   text-shadow: none !important;
 }
 
-body > header h1::after {
+body > header nav::before {
   content: " » ";
 }
 

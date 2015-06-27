@@ -136,3 +136,5 @@ This means that `rep` and `abs` are *monoid morphisms*, which implies that the e
 > abs $ rep "foo" . rep "bar" . rep "bizz"
 "foobarbiz"
 ```
+
+---

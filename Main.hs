@@ -1,11 +1,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-import qualified Data.Map            as M
-import qualified Data.Set            as S
+import qualified Data.Map                           as M
+import qualified Data.Set                           as S
 import           Hakyll
-import qualified Text.CSL            as CSL
-import           Text.CSL.Pandoc     (processCites)
+import qualified Text.CSL                           as CSL
+import           Text.CSL.Pandoc                    (processCites)
 import           Text.Pandoc
+import           Text.Pandoc.Crossref
+import           Text.Pandoc.Crossref.Util.Settings (defaultMeta)
 import           Text.Pandoc.Options
 
 main :: IO ()
@@ -129,7 +131,7 @@ readPandocBiblio' ropt csl biblio item = do
     -- actual page. If we don't do this, pandoc won't even consider them
     -- citations!
     let Biblio refs = itemBody biblio
-    pandoc <- setMeta . itemBody <$> readPandocWith ropt item
+    pandoc <- setMeta . processWith defaultMeta Nothing . itemBody <$> readPandocWith ropt item
     let pandoc' = processCites style refs pandoc
 
     return $ fmap (const pandoc') item
@@ -137,6 +139,5 @@ readPandocBiblio' ropt csl biblio item = do
     setMeta :: Pandoc -> Pandoc
     setMeta (Pandoc (Meta meta) blocks) = Pandoc (Meta meta') blocks
       where
-        meta' = M.insert "reference-section-title" (MetaString "References")
-              $ M.insert "link-citations" (MetaBool True)
+        meta' = M.insert "link-citations" (MetaBool True)
               $ meta
