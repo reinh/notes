@@ -21,11 +21,11 @@
 
     <header>
       <h1><a href="../">Rein's Notes</a></h1>
-      <nav>
-        <ul>
-          <li><a href="../archive.html">Archive</a></li>
-        </ul>
-      </nav>
+      <!-- <nav> -->
+      <!--   <ul> -->
+      <!--     <li><a href="/archive.html">Archive</a></li> -->
+      <!--   </ul> -->
+      <!-- </nav> -->
     </header>
 
     <section>
@@ -173,7 +173,7 @@ eitherToMaybe . maybeToEither :: Maybe a -&gt; Maybe a</code></pre>
 <p>The identity morphism for natural transformations is the always useful <code>id</code>. Composition for natural transformations is given by composition of the functions we use to represent them, modulo some newtype wrapping and unwrapping. Since newtypes are isomorphic to their underlying type, <code>Nat</code> wraps over <code>(-&gt;)</code>, and functions already form a category, we get the category laws for <code>Nat</code> for free. (Or at least we only had to pay for them once.)</p>
 
 <div class="references">
-<h1 id="bibliography" class="unnumbered">References</h1></div>
+</div>
 <footer><hr class="footnotes"><ol class="footnotes">
 <li id="fn1"><p>The terms &ldquo;mapping&rdquo;, &ldquo;arrow&rdquo;, and &ldquo;morphism&rdquo; are used pretty much interchangeably in category theory. <a href="#fnref1" class="fnref">↩</a></p></li>
 <li id="fn2"><p>An <em>endofunctor</em> is a functor that maps from a category to itself. <a href="#fnref2" class="fnref">↩</a></p></li>
