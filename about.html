@@ -13,6 +13,16 @@
     <link rel="stylesheet" type="text/css" href="./css/style.css">
     <link rel="stylesheet" type="text/css" href="./css/site.css">
     <link rel="stylesheet" type="text/css" href="./css/prism.css">
+
+    <script src="./js/widowtamer-min.js" type="text/javascript"></script>
+    <script>
+    wt.fix({
+      elements: 'article p',
+      chars: 20,
+      method: 'padding-right',
+      event: 'resize'
+    });
+    </script>
   </head>
   <body>
     <!--[if lt IE 8]>
@@ -46,7 +56,7 @@
     </script>
 
     <script>
-    renderMathInElement(
+      renderMathInElement(
           document.body,
           {
               delimiters: [
@@ -54,16 +64,8 @@
                   {left: "\\(", right: "\\)", display: false}
               ]
           }
-    );
+      );
     </script>
 
-    <style>
-      p, li, dd {
-        rag-adjust: small-words;
-        widow-adjust: padding-right;
-      }
-    </style>
-
-    <script src="./js/type.js" type="text/javascript"></script>
   </body>
 </html>
