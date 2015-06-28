@@ -124,7 +124,7 @@ generate = iterate step
 which repeatedly (coiteratively) applies the `rules` to the `axiom`.
 This makes `generate` a fixed point of the `rules` `m`-coalgebra.
 
-Now we can generate first six steps of its derivation and check our
+Now we can generate first six steps of our example's derivation and check our
 work with [@fig:abaababa].
 
 <aside class="sidenote">
