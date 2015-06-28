@@ -76,6 +76,9 @@ body {
     body {
       font-size: 1.15789rem; } }
 
+p {
+  widows: 3; }
+
 a {
   -webkit-transition: color 0.1s, background-color 0.1s;
   -moz-transition: color 0.1s, background-color 0.1s;
