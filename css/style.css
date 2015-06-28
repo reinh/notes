@@ -450,7 +450,7 @@ body em, body i, body .italic {
 body div.references {
   font-family: calluna-sans, sans-serif;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 1.19167rem; }
   @media screen and (min-width: 40em) {
     body div.references {
@@ -468,7 +468,7 @@ body div.references {
 body aside, body small, body .caption, body figcaption {
   font-family: calluna-sans, sans-serif;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 1.06667rem; }
   @media screen and (min-width: 40em) {
     body aside, body small, body .caption, body figcaption {
