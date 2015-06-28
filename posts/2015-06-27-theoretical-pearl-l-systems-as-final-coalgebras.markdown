@@ -113,7 +113,7 @@ step (D0L axm rls) = D0L (axm >>= rls) rls
 
 and we can see that `D0L` is really just packaging up the arguments to
 `(>>=)`. What's more, we know that our implementation of `step` is
-correct because it's the only defined inhabitant of the type. Thanks,
+correct because it's the only defined inhabitant of its type. Thanks,
 parametricity!
 
 Generating a list of iterations for a `D0L` is
