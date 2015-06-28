@@ -97,7 +97,7 @@ step (D0L axm rls) = D0L (axm &gt;&gt;= rls) rls</code></pre>
 step :: Monad m =&gt; D0L m a -&gt; D0L m a
 step (D0L axm rls) = D0L (axm &gt;&gt;= rls) rls</code></pre>
 
-<p>and we can see that <code>D0L</code> is really just packaging up the arguments to <code>(&gt;&gt;=)</code>!</p>
+<p>and we can see that <code>D0L</code> is really just packaging up the arguments to <code>(&gt;&gt;=)</code>. What’s more, we know that our implementation of <code>step</code> is correct because it’s the only defined inhabitant of the type! Thanks, parametricity!</p>
 
 <p>Generating a list of iterations for a <code>D0L</code> is</p>
 
