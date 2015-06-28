@@ -67,7 +67,7 @@ example = D0L &quot;b&quot; rules
   where rules 'a' = &quot;ab&quot;
         rules 'b' = &quot;a&quot;</code></pre>
 
-<p>In each step of the rewriting process, each letter in the string is replaced according to its production rule. In our Haskell representation, a step takes a <code>D0L</code>, applies the rules to the axiom, and gives a new <code>D0L</code> with the new string as its axiom and the same set of rules. We can use type driven development and a theorem prover to fill in the holes:</p>
+<p>In each step of the rewriting process, each letter in the string is replaced according to its production rule. In our Haskell representation, a step takes a <code>D0L</code>, applies the rules to the axiom, and gives a new <code>D0L</code> with the new string as its axiom and the same set of rules. We can use type driven development and a theorem prover to implement <code>step</code>:</p>
 
 <pre><code class="language-haskell">step :: D0L -&gt; D0L
 step (D0L axm rls) = D0L (_run axm rls) rls</code></pre>
