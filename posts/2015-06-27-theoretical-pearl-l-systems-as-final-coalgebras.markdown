@@ -65,7 +65,7 @@ replaced according to its production rule. In our Haskell
 representation, a step takes a `D0L`, applies the rules to the
 axiom, and gives a new `D0L` with the new string as its axiom
 and the same set of rules. We can use type driven development and a
-theorem prover to fill in the holes:
+theorem prover to implement `step`:
 
 ```haskell
 step :: D0L -> D0L
