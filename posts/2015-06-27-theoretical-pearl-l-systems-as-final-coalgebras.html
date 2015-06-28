@@ -55,7 +55,7 @@
 
 <aside class="sidenote"><ol start="1"><li id="sn1"><div><p>A deterministic L-system is one where each symbol has only one production rule. It is context-free when the production rules are only aware of the symbol itself and not any of its neighbors.</p></div></li></ol></aside><p>A simple L-system consists of an alphabet of symbols, an initial axiom (or starting string), and a set of production rules that expand each symbol into a string. Formally, a <em>deterministic</em>, <em>context-free</em> L-system<a id="fnref1" class="fnref" href="#fn1"><sup>1</sup></a> (or <span class="lining-numerals">D0L-system</span>) is defined as a tuple \[L = (\Sigma,\omega,P)\] where \(\Sigma\) is the alphabet, \(\omega\) the axiom, and \(P\) the collection of production rules.</p>
 
-<p>Consider the first example of an <span class="lining-numerals">D0L-system</span> given by <span class="cite" data-citation-ids="prusinkiewicz2012algorithmic">Prusinkiewicz et al. [<a href="#ref-prusinkiewicz2012algorithmic" title>2012</a>:15]</span>. It is built from alphabet \(\{a,b\}\), rewrite rules \(\{a \mapsto ab,b \mapsto a\}\), and starting string \(b\). We can use a Haskell representation where the symbols are characters, the words are strings, and the rules are functions from characters to strings:</p>
+<p>Consider the first example of a <span class="lining-numerals">D0L-system</span> given by <span class="cite" data-citation-ids="prusinkiewicz2012algorithmic">Prusinkiewicz et al. [<a href="#ref-prusinkiewicz2012algorithmic" title>2012</a>:15]</span>. It is built from alphabet \(\{a,b\}\), production rules \(\{a \mapsto ab,b \mapsto a\}\), and starting string \(b\). We can use a Haskell representation where the symbols are characters, the words are strings, and the rules are functions from characters to strings:</p>
 
 <pre><code class="language-haskell">data D0L = D0L
   { axiom :: String
@@ -109,7 +109,7 @@ generate = iterate step</code></pre>
 
 <aside class="sidenote">
 
-<figure><img src="../images/abaababa.png" alt="Figure 2: Derivation of the example from Prusinkiewicz et al. [2012:16]"><figcaption class="caption">Figure 2: Derivation of the example from <span class="cite" data-citation-ids="prusinkiewicz2012algorithmic">Prusinkiewicz et al. [<a href="#ref-prusinkiewicz2012algorithmic" title>2012</a>:16]</span></figcaption></figure>
+<figure><img src="../images/abaababa.png" alt="Figure 2: Derivation of the example in Prusinkiewicz et al. [2012:16]"><figcaption class="caption">Figure 2: Derivation of the example in <span class="cite" data-citation-ids="prusinkiewicz2012algorithmic">Prusinkiewicz et al. [<a href="#ref-prusinkiewicz2012algorithmic" title>2012</a>:16]</span></figcaption></figure>
 
 </aside>
 
