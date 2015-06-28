@@ -21,12 +21,12 @@ as fixed points of a coalgebra.
 [Denotational design]: TODO
 [L-systems]: TODO
 
-<span class="newthought">L-systems were created</span> in 1968 by
-Aristid Lindenmeyer to model the behavior of plant cells. As
-*rewriting systems*, they start with a simple object and repeatedly
-replace parts of it using a set of *rewriting rules* or *productions*
-[@prusinkiewicz2012algorithmic, p. 13]. They can be used to generate fractals
-and other self-similar images (see [@fig:weeds]).
+<span class="newthought">L-systems were created</span> by Aristid
+Lindenmeyer in 1968. As *rewriting systems*, they start with a simple
+object and repeatedly replace parts of it using a set of *rewriting
+rules* or *productions* [@prusinkiewicz2012algorithmic, p. 13]. They
+can be used to generate fractals and other self-similar images (see
+[@fig:weeds]).
 
 A simple L-system consists of an alphabet of symbols, an initial
 axiom (or starting string), and a set of production rules that expand each symbol
@@ -126,8 +126,8 @@ generate = iterate step
 which repeatedly (coiteratively) applies the `rules` to the `axiom`.
 This makes `generate` a fixed point of the `rules` `m`-coalgebra.
 
-Now we can generate first six steps of our example's derivation and check our
-work with [@fig:abaababa].
+Now we can generate first six steps of our example's derivation and
+check our work with [@fig:abaababa].
 
 <aside class="sidenote">
 
