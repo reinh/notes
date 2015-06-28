@@ -40,10 +40,10 @@ rules.
 production rule. It is context-free when the production rules are only
 aware of the symbol itself and not any of its neighbors.
 
-Consider the first example of an <span
+Consider the first example of a <span
 class="lining-numerals">D0L-system</span> given by
 @prusinkiewicz2012algorithmic [p. 15]. It is built from alphabet $\{a,b\}$,
-rewrite rules $\{a \mapsto ab,b \mapsto a\}$, and starting string $b$. We
+production rules $\{a \mapsto ab,b \mapsto a\}$, and starting string $b$. We
 can use a Haskell representation where the symbols are characters, the
 words are strings, and the rules are functions from characters to
 strings:
@@ -129,7 +129,7 @@ work with [@fig:abaababa].
 
 <aside class="sidenote">
 
-![abaababa][abaababa]{#fig:abaababa} "Derivation of the example from
+![abaababa][abaababa]{#fig:abaababa} "Derivation of the example in
  @prusinkiewicz2012algorithmic [p. 16]"
 
 </aside>
