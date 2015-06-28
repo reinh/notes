@@ -112,9 +112,10 @@ step (D0L axm rls) = D0L (axm >>= rls) rls
 ```
 
 and we can see that `D0L` is really just packaging up the arguments to
-`(>>=)`. What's more, we know that our implementation of `step` is
-correct because it's the only defined inhabitant of its type. Thanks,
-parametricity!
+`(>>=)`. Thanks to parametricity, we know that any implementations of
+`step` must use `(>>=)` to apply the `rules` to the `axiom`. The only
+thing we don't know is how many times the rules are applied, since
+`axm >>= rls >>= rls` is also a valid definition.
 
 Generating a list of iterations for a `D0L` is
 
