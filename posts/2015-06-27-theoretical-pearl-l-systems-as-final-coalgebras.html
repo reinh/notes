@@ -97,7 +97,7 @@ step (D0L axm rls) = D0L (axm &gt;&gt;= rls) rls</code></pre>
 step :: Monad m =&gt; D0L m a -&gt; D0L m a
 step (D0L axm rls) = D0L (axm &gt;&gt;= rls) rls</code></pre>
 
-<p>and we can see that <code>D0L</code> is really just packaging up the arguments to <code>(&gt;&gt;=)</code>. What’s more, we know that our implementation of <code>step</code> is correct because it’s the only defined inhabitant of its type. Thanks, parametricity!</p>
+<p>and we can see that <code>D0L</code> is really just packaging up the arguments to <code>(&gt;&gt;=)</code>. Thanks to parametricity, we know that any implementations of <code>step</code> must use <code>(&gt;&gt;=)</code> to apply the <code>rules</code> to the <code>axiom</code>. The only thing we don’t know is how many times the rules are applied, since <code>axm &gt;&gt;= rls &gt;&gt;= rls</code> is also a valid definition.</p>
 
 <p>Generating a list of iterations for a <code>D0L</code> is</p>
 
