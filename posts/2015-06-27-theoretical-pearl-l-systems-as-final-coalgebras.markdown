@@ -117,7 +117,7 @@ the arguments and thus it rejects the otherwise valid `step d0l =
 d0l`, which doesn't apply the rules at all.
 
 Unfortunately, the most we can say about `step` using parametricity is
-that it applies the rules to the axiom any number of times. We'd
+that it applies the rules to the axiom zero or more times. We'd
 prefer to be able to say "exactly one time" but for now we'll have to
 settle for this.
 
