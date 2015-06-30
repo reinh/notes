@@ -112,10 +112,14 @@ step (D0L axm rls) = D0L (axm >>= rls) rls
 ```
 
 and we can see that `D0L` is really just packaging up the arguments to
-`(>>=)`. Thanks to parametricity, we know that any implementations of
-`step` must use `(>>=)` to apply the `rules` to the `axiom`. The only
-thing we don't know is how many times the rules are applied, since
-`axm >>= rls >>= rls` is also a valid definition.
+`(>>=)`. One advantage of Exference is that it attempts to use all of
+the arguments and thus it rejects the otherwise valid `step d0l =
+d0l`, which doesn't apply the rules at all.
+
+Unfortunately, the most we can say about `step` using parametricity is
+that it applies the rules to the axiom any number of times. We'd
+prefer to be able to say "exactly one time" but for now we'll have to
+settle for this.
 
 Generating a list of iterations for a `D0L` is
 
@@ -125,7 +129,8 @@ generate = iterate step
 ```
 
 which repeatedly (coiteratively) applies the `rules` to the `axiom`.
-This makes `generate` a fixed point of the `rules` `m`-coalgebra.
+This makes `generate` the trace of the fixed point of applying the
+rules to the axiom.
 
 Now we can generate first six steps of our example's derivation and
 check our work with [@fig:abaababa].

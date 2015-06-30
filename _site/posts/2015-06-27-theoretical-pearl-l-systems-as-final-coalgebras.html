@@ -97,14 +97,16 @@ step (D0L axm rls) = D0L (axm &gt;&gt;= rls) rls</code></pre>
 step :: Monad m =&gt; D0L m a -&gt; D0L m a
 step (D0L axm rls) = D0L (axm &gt;&gt;= rls) rls</code></pre>
 
-<p>and we can see that <code>D0L</code> is really just packaging up the arguments to <code>(&gt;&gt;=)</code>. Thanks to parametricity, we know that any implementations of <code>step</code> must use <code>(&gt;&gt;=)</code> to apply the <code>rules</code> to the <code>axiom</code>. The only thing we don’t know is how many times the rules are applied, since <code>axm &gt;&gt;= rls &gt;&gt;= rls</code> is also a valid definition.</p>
+<p>and we can see that <code>D0L</code> is really just packaging up the arguments to <code>(&gt;&gt;=)</code>. One advantage of Exference is that it attempts to use all of the arguments and thus it rejects the otherwise valid <code>step d0l = d0l</code>, which doesn’t apply the rules at all.</p>
+
+<p>Unfortunately, the most we can say about <code>step</code> using parametricity is that it applies the rules to the axiom any number of times. We’d prefer to be able to say &ldquo;exactly one time&rdquo; but for now we’ll have to settle for this.</p>
 
 <p>Generating a list of iterations for a <code>D0L</code> is</p>
 
 <pre><code class="language-haskell">generate :: Monad m =&gt; D0L m a -&gt; [D0L m a]
 generate = iterate step</code></pre>
 
-<p>which repeatedly (coiteratively) applies the <code>rules</code> to the <code>axiom</code>. This makes <code>generate</code> a fixed point of the <code>rules</code> <code>m</code>-coalgebra.</p>
+<p>which repeatedly (coiteratively) applies the <code>rules</code> to the <code>axiom</code>. This makes <code>generate</code> the trace of the fixed point of applying the rules to the axiom.</p>
 
 <p>Now we can generate first six steps of our example’s derivation and check our work with fig. 2.</p>
 
