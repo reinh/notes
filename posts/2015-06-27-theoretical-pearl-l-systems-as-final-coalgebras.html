@@ -99,7 +99,7 @@ step (D0L axm rls) = D0L (axm &gt;&gt;= rls) rls</code></pre>
 
 <p>and we can see that <code>D0L</code> is really just packaging up the arguments to <code>(&gt;&gt;=)</code>. One advantage of Exference is that it attempts to use all of the arguments and thus it rejects the otherwise valid <code>step d0l = d0l</code>, which doesn’t apply the rules at all.</p>
 
-<p>Unfortunately, the most we can say about <code>step</code> using parametricity is that it applies the rules to the axiom any number of times. We’d prefer to be able to say &ldquo;exactly one time&rdquo; but for now we’ll have to settle for this.</p>
+<p>Unfortunately, the most we can say about <code>step</code> using parametricity is that it applies the rules to the axiom zero or more times. We’d prefer to be able to say &ldquo;exactly one time&rdquo; but for now we’ll have to settle for this.</p>
 
 <p>Generating a list of iterations for a <code>D0L</code> is</p>
 
